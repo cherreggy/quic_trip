@@ -1,5 +1,5 @@
 import { createFromIconfontCN } from "@ant-design/icons";
-import { Menu } from "antd";
+import { Menu, Button } from "antd";
 import { useState } from "react";
 
 const IconFont = createFromIconfontCN({
@@ -160,7 +160,6 @@ export default function SiderNav() {
         openKeys={openKeys}
         onOpenChange={onOpenChange}
         items={items_addition}
-        inlineCollapsed={true}
       />
     </div>
   );

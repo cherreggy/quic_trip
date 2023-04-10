@@ -39,7 +39,7 @@ export default function Home() {
       }}
     >
       <Layout style={{ minHeight: "100vh" }}>
-        <Sider style={siderStyle}>
+        <Sider style={siderStyle} collapsible>
           <SiderNav></SiderNav>
         </Sider>
         <Layout>
