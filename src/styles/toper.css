@@ -78,3 +78,15 @@ a {
   background-color: #e5bdff !important;
   color: white;
 }
+
+.mobile-info {
+  margin-bottom: 0.5vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.mobile-info img {
+  width: 15vh;
+  height: 15vh;
+}

@@ -1,12 +1,12 @@
-import { Input } from "antd";
+import { Input, notification } from "antd";
 import { createFromIconfontCN } from "@ant-design/icons";
-import { DownOutlined } from "@ant-design/icons";
+import { DownOutlined, RightOutlined } from "@ant-design/icons";
 import { Dropdown, Space, Popover } from "antd";
 const { Search } = Input;
 
 const IconFont = createFromIconfontCN({
   // 阿里巴巴矢量图库项目链接
-  scriptUrl: "//at.alicdn.com/t/c/font_4006149_ytmgagb7vcg.js",
+  scriptUrl: "//at.alicdn.com/t/c/font_4006149_1n9h9l4fw7s.js",
 });
 
 const items = [
@@ -17,10 +17,31 @@ const items = [
 ];
 
 export default function Toper() {
+  const [api, contextHolder] = notification.useNotification();
+  const openNotification = (e) => {
+    if (e.keyCode === 13) {
+      api.open({
+        message: "你触发了搜索操作",
+        description:
+          "思路描述：此操作用于模拟真实场景，搜索按钮按下后客户端给服务器发送信息，服务器处理搜索结果后返回给前端渲染搜索结果。",
+        className: "custom-class",
+        style: {
+          width: 600,
+        },
+      });
+    }
+  };
+
   return (
     <div className="wrapper">
       <img src="./logo.png" className="logo" />
-      <Search placeholder="搜索旅行地/酒店/景点" enterButton size="middle" />
+      {contextHolder}
+      <Search
+        placeholder="搜索旅行地/酒店/景点"
+        enterButton
+        size="middle"
+        onKeyUp={openNotification}
+      />
       {/* 右侧信息栏 */}
       <div
         className="tools"
@@ -90,7 +111,20 @@ export default function Toper() {
         <Popover
           content={
             <div>
-              <p>客服机器人小Q</p>
+              <div className="mobile-info">
+                <div style={{ marginRight: "1vw" }}>
+                  <img src="./code1.png" />
+                  <p>扫码下载QUIC手机版</p>
+                </div>
+
+                <div>
+                  <img src="./code2.png" />
+                  <p>扫码领QUIC精彩好礼</p>
+                </div>
+              </div>
+              <a>
+                QUIC旅行手机版 <RightOutlined></RightOutlined>
+              </a>
             </div>
           }
         >
@@ -99,6 +133,52 @@ export default function Toper() {
             style={{
               fontSize: "3vh",
               margin: "0.5vh 1vh 0 1vh",
+              cursor: "pointer",
+            }}
+          />
+        </Popover>
+      </div>
+      {/* 工具栏2 */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "8vw",
+          height: "3vh",
+          padding: "0 1vh",
+        }}
+      >
+        <Popover
+          content={
+            <div>
+              <p>无障碍模式</p>
+            </div>
+          }
+        >
+          <IconFont
+            type="icon-wuzhangaisheshi"
+            style={{
+              fontSize: "3vh",
+              margin: "0 1vh",
+              cursor: "pointer",
+            }}
+          />
+        </Popover>
+
+        <Popover
+          content={
+            <div>
+              <p>关怀版</p>
+            </div>
+          }
+        >
+          <IconFont
+            type="icon-linzhongguanhuaike"
+            style={{
+              fontSize: "3vh",
+              margin: "0 1vh",
+              cursor: "pointer",
             }}
           />
         </Popover>
