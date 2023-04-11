@@ -1,0 +1,80 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.logo {
+  width: 8vw;
+  margin-right: 2rem;
+}
+
+.ant-input-wrapper.ant-input-group {
+  display: flex;
+  width: 14vw !important;
+}
+
+.ant-btn {
+  display: flex !important;
+  align-items: center !important;
+  background-color: #9f1bfa !important;
+}
+
+.anticon-search {
+  font-size: 2.2vh !important;
+}
+
+a {
+  text-decoration: none;
+}
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5vw;
+  height: 3.5vh;
+  line-height: 3.5vh;
+  border-radius: 10vh;
+  background-color: #f4e7ff;
+  color: #ba54ff;
+}
+
+.login:hover,
+.regist:hover {
+  color: #9f1bfa;
+}
+
+.tools {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: red; */
+}
+
+.regist {
+  width: 3vw;
+  color: #ba54ff;
+}
+
+.menu_item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu_item:hover {
+  color: #9f1bfa;
+}
+
+.ant-dropdown .ant-dropdown-menu .ant-dropdown-menu-item {
+  justify-content: center !important;
+  border-radius: 100vh !important;
+  color: #9f1bfa;
+}
+
+.ant-dropdown .ant-dropdown-menu .ant-dropdown-menu-item-active {
+  background-color: #e5bdff !important;
+  color: white;
+}

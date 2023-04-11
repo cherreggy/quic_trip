@@ -1,93 +1,101 @@
-:where(.css-dev-only-do-not-override-15j1hpi).ant-menu-inline > .ant-menu-item,
-:where(.css-dev-only-do-not-override-15j1hpi).ant-menu-vertical
-  > .ant-menu-item,
-:where(.css-dev-only-do-not-override-15j1hpi).ant-menu-inline
-  > .ant-menu-submenu
-  > .ant-menu-submenu-title,
-:where(.css-dev-only-do-not-override-15j1hpi).ant-menu-vertical
-  > .ant-menu-submenu
-  > .ant-menu-submenu-title {
-  height: 6vh;
-  line-height: 6vh;
-  border-radius: 10vh;
+.ant-menu-inline > .ant-menu-item,
+.ant-menu-vertical > .ant-menu-item,
+.ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title,
+.ant-menu-vertical > .ant-menu-submenu > .ant-menu-submenu-title {
+  height: 6vh !important;
+  line-height: 6vh !important;
+  border-radius: 10vh !important;
 }
 
-:where(.css-dev-only-do-not-override-15j1hpi).ant-layout
-  .ant-layout-sider-children {
-  padding: 1vh;
-  border-right: 1px solid #ccc;
-  box-shadow: 3px 3px 20px 1px rgba(0, 0, 0, 0.3);
+.ant-layout .ant-layout-sider-children {
+  padding: 1vh !important;
 }
 
-:where(
-    .css-dev-only-do-not-override-15j1hpi
-  ).ant-menu-light.ant-menu-root.ant-menu-inline,
-:where(.css-dev-only-do-not-override-15j1hpi).ant-menu-light
-  > .ant-menu.ant-menu-root.ant-menu-inline,
-:where(
-    .css-dev-only-do-not-override-15j1hpi
-  ).ant-menu-light.ant-menu-root.ant-menu-vertical,
-:where(.css-dev-only-do-not-override-15j1hpi).ant-menu-light
-  > .ant-menu.ant-menu-root.ant-menu-vertical {
-  border-inline-end: none;
+.ant-menu-light.ant-menu-root.ant-menu-inline,
+.ant-menu-light > .ant-menu.ant-menu-root.ant-menu-inline,
+.ant-menu-light.ant-menu-root.ant-menu-vertical,
+.ant-menu-light > .ant-menu.ant-menu-root.ant-menu-vertical {
+  border-inline-end: none !important;
 }
 
-:where(.css-dev-only-do-not-override-15j1hpi).ant-menu-light.ant-menu-inline
-  .ant-menu-sub.ant-menu-inline,
-:where(.css-dev-only-do-not-override-15j1hpi).ant-menu-light
-  > .ant-menu.ant-menu-inline
-  .ant-menu-sub.ant-menu-inline {
-  background: none;
+.ant-menu-light.ant-menu-inline .ant-menu-sub.ant-menu-inline,
+.ant-menu-light > .ant-menu.ant-menu-inline .ant-menu-sub.ant-menu-inline {
+  background: none !important;
 }
 
-:where(.css-dev-only-do-not-override-15j1hpi).ant-menu .ant-menu-item,
-:where(.css-dev-only-do-not-override-15j1hpi).ant-menu .ant-menu-submenu,
-:where(.css-dev-only-do-not-override-15j1hpi).ant-menu .ant-menu-submenu-title {
-  border-radius: 10vh;
+.ant-menu .ant-menu-item,
+.ant-menu .ant-menu-submenu,
+.ant-menu .ant-menu-submenu-title {
+  border-radius: 10vh !important;
 }
 
 .ant-menu-submenu-arrow::before {
-  color: #9f1bfa;
-  font-weight: 1000;
-  font-size: 3vh;
+  color: #7300c0 !important;
+  font-weight: 1000 !important;
+  font-size: 3vh !important;
 }
 
 .ant-menu-submenu-arrow::after {
-  color: #e4bdff;
-  font-weight: 1000;
+  color: #e4bdff !important;
+  font-weight: 1000 !important;
 }
 
-:where(.css-dev-only-do-not-override-15j1hpi).ant-menu
-  .ant-menu-submenu-arrow::before,
-:where(.css-dev-only-do-not-override-15j1hpi).ant-menu
-  .ant-menu-submenu-arrow::after {
-  width: 10px;
-  height: 4.5px;
+.ant-menu .ant-menu-submenu-arrow::before,
+.ant-menu .ant-menu-submenu-arrow::after {
+  width: 10px !important;
+  height: 4.5px !important;
 }
 
-:where(.css-dev-only-do-not-override-15j1hpi).ant-menu-light
-  .ant-menu-submenu-selected
-  > .ant-menu-submenu-title,
-:where(.css-dev-only-do-not-override-15j1hpi).ant-menu-light
+.ant-menu-light .ant-menu-submenu-selected > .ant-menu-submenu-title,
+.ant-menu-light
   > .ant-menu
   .ant-menu-submenu-selected
   > .ant-menu-submenu-title {
-  background-color: #9f1bfa;
-  color: #fff;
+  background-color: #9f1bfa !important;
+  color: #fff !important;
 }
 
-:where(.css-dev-only-do-not-override-15j1hpi).ant-menu
-  .ant-menu-item
-  .ant-menu-item-icon
-  svg,
-:where(.css-dev-only-do-not-override-15j1hpi).ant-menu
-  .ant-menu-submenu-title
-  .ant-menu-item-icon
-  svg {
-  background-color: #fff;
-  border-radius: 1vh;
+.ant-menu .ant-menu-item .ant-menu-item-icon svg,
+.ant-menu .ant-menu-submenu-title .ant-menu-item-icon svg {
+  background-color: #fff !important;
+  border-radius: 1vh !important;
+}
+
+.ant-layout .ant-layout-sider {
+  position: static !important;
 }
 
 .ant-menu-submenu-title {
-  font-size: 1.8vh;
+  font-size: 1.8vh !important;
+}
+
+/* 导航栏下部收缩标志的样式 */
+.ant-layout .ant-layout-sider-trigger {
+  background-color: #ccc !important;
+  border-right: solid 1px #eee !important;
+}
+
+.ant-menu-light.ant-menu-inline .ant-menu-item,
+.ant-menu-light > .ant-menu.ant-menu-inline .ant-menu-item {
+  height: 4vh !important;
+}
+
+.ant-layout .ant-layout-sider-children .ant-menu.ant-menu-inline-collapsed {
+  width: auto !important;
+  background-color: transparent !important;
+}
+
+.folder {
+  margin: 2vh 0 !important;
+  font-size: 2vh !important;
+  cursor: pointer !important;
+}
+
+.ant-menu-submenu-popup .ant-menu-vertical > .ant-menu-item,
+.ant-menu-submenu-popup
+  .ant-menu-vertical
+  > .ant-menu-submenu
+  > .ant-menu-submenu-title {
+  line-height: 4vh !important;
+  height: 4vh !important;
 }

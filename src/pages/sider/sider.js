@@ -4,10 +4,10 @@ import { useState } from "react";
 
 const IconFont = createFromIconfontCN({
   // 阿里巴巴矢量图库项目链接
-  scriptUrl: "//at.alicdn.com/t/c/font_4006149_zutzc1b9ob.js",
+  scriptUrl: "//at.alicdn.com/t/c/font_4006149_d35cbatu5cl.js",
 });
 
-export default function SiderNav() {
+export default function SiderNav({ collapsed, setCollapsed }) {
   // 导航栏组件
 
   // 标签项设置
@@ -138,6 +138,10 @@ export default function SiderNav() {
       setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
     }
   };
+  // 设置折叠值，父组件传入的控制器
+  const handleFold = () => {
+    setCollapsed(!collapsed);
+  };
 
   return (
     <div
@@ -147,6 +151,8 @@ export default function SiderNav() {
         flexDirection: "column",
       }}
     >
+      <IconFont type="icon-zhankai" className="folder" onClick={handleFold} />
+
       <Menu
         mode="inline"
         openKeys={openKeys}

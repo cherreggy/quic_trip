@@ -1,15 +1,17 @@
 import { Layout, ConfigProvider } from "antd";
 const { Header, Footer, Sider, Content } = Layout;
 import SiderNav from "./sider/sider";
+import Toper from "./toper/toper";
+import { useState } from "react";
 
 // 测试用主页面布局样式
 const headerStyle = {
+  display: "flex",
   textAlign: "center",
-  color: "#fff",
   height: 64,
   paddingInline: 50,
   lineHeight: "64px",
-  backgroundColor: "#7dbcea",
+  backgroundColor: "#fff",
 };
 const contentStyle = {
   textAlign: "center",
@@ -18,10 +20,11 @@ const contentStyle = {
   backgroundColor: "#108ee9",
 };
 const siderStyle = {
-  textAlign: "center",
-  color: "#fff",
   backgroundColor: "#fff",
+  boxShadow: "3px 3px 20px 1px rgba(0, 0, 0, 0.1)",
+  zIndex: "1",
 };
+
 const footerStyle = {
   textAlign: "center",
   color: "#fff",
@@ -29,6 +32,8 @@ const footerStyle = {
 };
 
 export default function Home() {
+  const [collapsed, setCollapsed] = useState(false);
+
   return (
     <ConfigProvider
       theme={{
@@ -39,11 +44,20 @@ export default function Home() {
       }}
     >
       <Layout style={{ minHeight: "100vh" }}>
-        <Sider style={siderStyle} collapsible>
-          <SiderNav></SiderNav>
+        <Sider
+          style={siderStyle}
+          collapsed={collapsed}
+          setCollapsed={setCollapsed}
+        >
+          <SiderNav
+            setCollapsed={setCollapsed}
+            collapsed={collapsed}
+          ></SiderNav>
         </Sider>
         <Layout>
-          <Header style={headerStyle}>Header</Header>
+          <Header style={headerStyle}>
+            <Toper></Toper>
+          </Header>
           <Content style={contentStyle}>Content</Content>
           <Footer style={footerStyle}>Footer</Footer>
         </Layout>
