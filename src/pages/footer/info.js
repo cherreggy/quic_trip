@@ -145,7 +145,7 @@ export default function Info() {
               style={{ padding: "0 1rem 1rem 2rem", height: "15rem" }}
             >
               {/* 右侧文字和二维码 */}
-              <div style={{ display: "flex" }}>
+              <div style={{ display: "flex", paddingTop: "2.6rem" }}>
                 {/* 文字联系我们 */}
                 <div className="contact">
                   <p>境内： 95010 或 400-830-6666</p>
@@ -160,7 +160,7 @@ export default function Info() {
                     errorLevel="H"
                     value="https://ant.design/"
                     icon="https://cdn-icons-png.flaticon.com/512/9379/9379368.png"
-                    size={160}
+                    size={120}
                   />
                   <p>扫码下载QUIC</p>
                 </div>
@@ -170,9 +170,40 @@ export default function Info() {
         </div>
       </div>
       {/* 下部文字 */}
-      <div></div>
+      <div style={{ textAlign: "center", color: "#bbb" }}>
+        <p>
+          <a>Copyright©1999-2023, ctrip.com. All rights reserved.</a> |
+          <a> ICP证：沪B2-20050130</a> | <a>沪ICP备08023580号-3</a>
+        </p>
+
+        <p style={{ display: "flex", justifyContent: "center" }}>
+          <img
+            src="https://nimg.ws.126.net/?url=https://dingyue.ws.126.net/2021/0622/8e38ffbdj00qv29ha001pc000hs00iac.jpg&thumbnail=650x2147483647&quality=80&type=jpg"
+            style={{ width: "1.2rem", marginRight: "0.2rem" }}
+          />
+          <a>沪公网备31010502002731号</a>丨<a>互联网药品信息服务资格证</a>丨
+          <a>（沪）网械平台备字[2022]第00001号</a> | <a>沪网食备1050001号</a> |
+          <a> 旅游度假资质</a> | <a> 平台信息</a>
+        </p>
+
+        <p>
+          <a>违法和不良信息举报电话021-22500846</a>丨
+          <a>全国旅游投诉热线12345</a>丨
+          <a>上海市旅游网站落实诚信建设主体责任承诺书</a>
+        </p>
+      </div>
       {/* 下部小图 */}
-      <div></div>
+      <div
+        style={{
+          display: "flex",
+          marginTop: "0.5rem",
+          justifyContent: "center",
+        }}
+      >
+        <a>
+          <img src="bottom.png" />
+        </a>
+      </div>
     </div>
   );
 }

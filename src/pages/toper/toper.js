@@ -60,18 +60,18 @@ export default function Toper() {
       <div
         className="tools"
         style={{
-          height: "3vh",
+          height: "1.2rem",
           borderRight: "1px solid #ddd",
-          paddingRight: "1vh",
+          paddingRight: "0.5rem",
         }}
       >
         <a className="login" onClick={handleLogin}>
           <IconFont
             type="icon-avatar"
             style={{
-              fontSize: "3vh",
-              marginLeft: "-0.5vw",
-              marginRight: "0.5vw",
+              fontSize: "1.8rem",
+              marginLeft: "-0.5rem",
+              marginRight: "0.5rem",
             }}
           />
           请登录
@@ -83,12 +83,12 @@ export default function Toper() {
           handleOk={handleOk}
         ></Login>
         {/* 下拉菜单 */}
-        <div style={{ width: "6vw" }}>
+        <div style={{ width: "6.5rem" }}>
           <Dropdown menu={{ items }}>
             <a onClick={(e) => e.preventDefault()} className="menu_item">
               <IconFont
                 type="icon-shouye"
-                style={{ fontSize: "2.5vh", marginRight: "0.2vw" }}
+                style={{ fontSize: "1.2rem", marginRight: "0.2rem" }}
               ></IconFont>
               <Space>
                 我的订单

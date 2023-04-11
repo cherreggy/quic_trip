@@ -6,13 +6,13 @@
 }
 
 .logo {
-  width: 8vw;
+  width: 9rem;
   margin-right: 2rem;
 }
 
 .ant-input-wrapper.ant-input-group {
   display: flex;
-  width: 14vw !important;
+  width: 16rem !important;
 }
 
 .ant-input-search
@@ -29,7 +29,7 @@
 }
 
 .anticon-search {
-  font-size: 2.2vh !important;
+  font-size: 1.2rem !important;
 }
 
 a {
@@ -40,10 +40,10 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 5vw;
-  height: 3.5vh;
-  line-height: 3.5vh;
-  border-radius: 10vh;
+  width: 6rem;
+  height: 2rem;
+  line-height: 2rem;
+  border-radius: 10rem;
   background-color: #f4e7ff;
   color: #ba54ff;
 }
@@ -61,7 +61,7 @@ a {
 }
 
 .regist {
-  width: 3vw;
+  width: 4rem;
   color: #ba54ff;
 }
 
@@ -87,15 +87,10 @@ a {
 }
 
 .mobile-info {
-  margin-bottom: 0.5vh;
+  margin-bottom: 0.5rem;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-}
-
-.mobile-info img {
-  width: 15vh;
-  height: 15vh;
 }
 
 .ant-modal .ant-modal-title {

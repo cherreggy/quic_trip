@@ -7,7 +7,7 @@
 }
 
 .qrcode p {
-  margin-top: 1vh;
+  margin-top: 0.5rem;
 }
 
 .wrapper-bottom {
@@ -20,7 +20,7 @@
 }
 
 .text-list a {
-  line-height: 3vh;
+  line-height: 1.5rem;
   color: #999;
   font-size: 0.3rem;
 }
@@ -30,9 +30,8 @@
 }
 
 .contact {
-  padding: 0.5rem;
   padding-left: 0;
-  line-height: 3vh;
+  line-height: 1.5rem;
   color: #999;
   font-size: 0.3rem;
 }
