@@ -2,6 +2,9 @@ import { Input, notification } from "antd";
 import { createFromIconfontCN } from "@ant-design/icons";
 import { DownOutlined, RightOutlined } from "@ant-design/icons";
 import { Dropdown, Space, Popover } from "antd";
+import { QRCode } from "antd";
+import { useState } from "react";
+import Login from "./login";
 const { Search } = Input;
 
 const IconFont = createFromIconfontCN({
@@ -18,6 +21,9 @@ const items = [
 
 export default function Toper() {
   const [api, contextHolder] = notification.useNotification();
+  // 登录弹窗状态
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const openNotification = () => {
     api.open({
       message: "你触发了搜索操作",
@@ -25,6 +31,19 @@ export default function Toper() {
         "思路描述：此操作用于模拟真实场景，搜索按钮按下后客户端给服务器发送信息，服务器处理搜索结果后返回给前端渲染搜索结果。",
       placement: "top",
     });
+  };
+  // 登陆按钮点击事件函数，显示弹窗
+  const handleLogin = () => {
+    setIsModalOpen(true);
+  };
+  // 弹窗取消按钮操作
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+  // 弹窗确定按钮操作
+  const handleOk = () => {
+    // 执行登录事件后关闭弹窗
+    setIsModalOpen(false);
   };
 
   return (
@@ -46,7 +65,7 @@ export default function Toper() {
           paddingRight: "1vh",
         }}
       >
-        <a className="login">
+        <a className="login" onClick={handleLogin}>
           <IconFont
             type="icon-avatar"
             style={{
@@ -58,6 +77,11 @@ export default function Toper() {
           请登录
         </a>
         <a className="regist">注册</a>
+        <Login
+          isModalOpen={isModalOpen}
+          handleCancel={handleCancel}
+          handleOk={handleOk}
+        ></Login>
         {/* 下拉菜单 */}
         <div style={{ width: "6vw" }}>
           <Dropdown menu={{ items }}>
@@ -108,17 +132,25 @@ export default function Toper() {
             <div>
               <div className="mobile-info">
                 <div style={{ marginRight: "1vw" }}>
-                  <img src="./code1.png" />
+                  <QRCode
+                    errorLevel="H"
+                    value="https://ant.design/"
+                    icon="https://cdn-icons-png.flaticon.com/512/9379/9379368.png"
+                  />
                   <p>扫码下载QUIC手机版</p>
                 </div>
 
                 <div>
-                  <img src="./code2.png" />
+                  <QRCode
+                    errorLevel="H"
+                    value="https://ant.design/"
+                    icon="https://cdn-icons-png.flaticon.com/512/10030/10030452.png"
+                  />
                   <p>扫码领QUIC精彩好礼</p>
                 </div>
               </div>
               <a>
-                QUIC旅行手机版 <RightOutlined></RightOutlined>
+                QUIC旅行手机版<RightOutlined></RightOutlined>
               </a>
             </div>
           }

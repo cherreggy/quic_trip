@@ -15,9 +15,16 @@
   width: 14vw !important;
 }
 
-.ant-btn {
-  display: flex !important;
+.ant-input-search
+  > .ant-input-group
+  > .ant-input-group-addon:last-child
+  .ant-input-search-button {
+  display: flex;
   align-items: center !important;
+  background-color: #9f1bfa !important;
+}
+
+.ant-modal .ant-modal-footer .ant-btn + .ant-btn {
   background-color: #9f1bfa !important;
 }
 
@@ -89,4 +96,16 @@ a {
 .mobile-info img {
   width: 15vh;
   height: 15vh;
+}
+
+.ant-modal .ant-modal-title {
+  text-align: center;
+}
+
+.ant-btn-primary {
+  background-color: #9f1bfa !important;
+}
+
+.ant-form-item .ant-btn-primary {
+  background: linear-gradient(45deg, rgb(255, 81, 0), #9f1bfa) !important;
 }

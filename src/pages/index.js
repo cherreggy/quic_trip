@@ -2,6 +2,7 @@ import { Layout, ConfigProvider } from "antd";
 const { Header, Footer, Sider, Content } = Layout;
 import SiderNav from "./sider/sider";
 import Toper from "./toper/toper";
+import Info from "./footer/info";
 import { useState } from "react";
 
 // 测试用主页面布局样式
@@ -26,9 +27,8 @@ const siderStyle = {
 };
 
 const footerStyle = {
-  textAlign: "center",
-  color: "#fff",
-  backgroundColor: "#7dbcea",
+  minHeight: "30vh",
+  backgroundColor: "#f8fafd",
 };
 
 export default function Home() {
@@ -59,7 +59,9 @@ export default function Home() {
             <Toper></Toper>
           </Header>
           <Content style={contentStyle}>Content</Content>
-          <Footer style={footerStyle}>Footer</Footer>
+          <Footer style={footerStyle}>
+            <Info></Info>
+          </Footer>
         </Layout>
       </Layout>
     </ConfigProvider>

@@ -1,0 +1,43 @@
+.qrcode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-left: 2rem;
+}
+
+.qrcode p {
+  margin-top: 1vh;
+}
+
+.wrapper-bottom {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.text-list {
+  flex: 1;
+}
+
+.text-list a {
+  line-height: 3vh;
+  color: #999;
+  font-size: 0.3rem;
+}
+
+.text-list a:hover {
+  color: #9f1bfa;
+}
+
+.contact {
+  padding: 0.5rem;
+  padding-left: 0;
+  line-height: 3vh;
+  color: #999;
+  font-size: 0.3rem;
+}
+
+.title {
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+}
