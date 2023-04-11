@@ -18,18 +18,13 @@ const items = [
 
 export default function Toper() {
   const [api, contextHolder] = notification.useNotification();
-  const openNotification = (e) => {
-    if (e.keyCode === 13) {
-      api.open({
-        message: "你触发了搜索操作",
-        description:
-          "思路描述：此操作用于模拟真实场景，搜索按钮按下后客户端给服务器发送信息，服务器处理搜索结果后返回给前端渲染搜索结果。",
-        className: "custom-class",
-        style: {
-          width: 600,
-        },
-      });
-    }
+  const openNotification = () => {
+    api.open({
+      message: "你触发了搜索操作",
+      description:
+        "思路描述：此操作用于模拟真实场景，搜索按钮按下后客户端给服务器发送信息，服务器处理搜索结果后返回给前端渲染搜索结果。",
+      placement: "top",
+    });
   };
 
   return (
@@ -40,7 +35,7 @@ export default function Toper() {
         placeholder="搜索旅行地/酒店/景点"
         enterButton
         size="middle"
-        onKeyUp={openNotification}
+        onSearch={openNotification}
       />
       {/* 右侧信息栏 */}
       <div
