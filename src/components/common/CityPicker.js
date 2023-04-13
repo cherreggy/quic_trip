@@ -1,7 +1,8 @@
 import { Cascader } from "antd";
+import { useState, useEffect } from "react";
 
 export default function CityPicker(props) {
-  const options = [
+  var options = [
     {
       value: "国内",
       label: "国内",
@@ -1293,8 +1294,13 @@ export default function CityPicker(props) {
       ],
     },
   ];
+
+  if (props.chinaOnly) {
+    options = options.slice(0, 1);
+  }
+
   const onChange = (value) => {
-    // console.log(value);
+    if (props.setFunc && value) props.setFunc(value);
   };
   // 渲染结果函数
   const display = (label) => {
@@ -1308,6 +1314,10 @@ export default function CityPicker(props) {
         placeholder={props.title}
         bordered={true}
         displayRender={display}
+        value={props.val}
+        onClear={() => {
+          props.setFunc([]);
+        }}
       />
     </div>
   );

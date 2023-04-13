@@ -1,0 +1,80 @@
+.boat-wrapper {
+  margin: 0 auto;
+  width: 60%;
+  background-color: #fff;
+}
+
+.boat-wrapper .top {
+  display: flex;
+  height: 25rem;
+  padding: 1rem 0;
+}
+
+.boat-wrapper .top .left {
+  flex: 4;
+  margin-right: 1rem;
+  /* background-color: yellow; */
+}
+
+.boat-wrapper .top .left .ticket {
+  height: 18.3rem;
+  width: 25rem;
+  margin-top: -1rem;
+  background-color: #9f1bfa;
+}
+
+.boat-wrapper .top .left .ticket.bus {
+  padding: 2rem;
+}
+
+.boat-wrapper .top .right {
+  flex: 8;
+  /* background-color: yellowgreen; */
+}
+
+.boat-wrapper .bottom {
+  display: flex;
+  height: 10rem;
+}
+
+.boat-wrapper .bottom .left {
+  flex: 3;
+  margin-right: 8rem;
+  /* background-color: red; */
+}
+
+.boat-wrapper .bottom .left h2,
+.boat-wrapper .bottom .right h2 {
+  font-size: 1.2rem;
+}
+
+.boat-wrapper .bottom .right h2 {
+  border-bottom: #6d00b6 solid 2px;
+}
+
+.boat-wrapper .bottom .left a {
+  display: inline-block;
+  margin-right: 1rem;
+  margin-top: 0.5rem;
+  width: 6rem;
+  height: 6rem;
+  background-color: #efd6ff;
+  font-size: 3rem;
+  text-align: center;
+  color: #9f1bfa;
+}
+
+.boat-wrapper .bottom .left a .text {
+  display: block;
+  margin-top: -0.2rem;
+  font-size: 0.8rem;
+}
+
+.boat-wrapper .bottom .left a:hover {
+  color: #ffffff;
+}
+
+.boat-wrapper .bottom .right {
+  flex: 10;
+  /* background-color: blue; */
+}

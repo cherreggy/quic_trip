@@ -1,0 +1,13 @@
+{
+  "components": {
+    "Tabs": {
+      "colorBgContainer": "#9f1bfa",
+      "colorPrimary": "#fff",
+      "colorFillAlter": "#fae8ff",
+      "controlHeight": 32
+    }
+  },
+  "token": {
+    "colorPrimary": "#9f1bfa"
+  }
+}
