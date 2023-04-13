@@ -21,7 +21,7 @@ function userNameAndPassword() {
               message: "请输入用户名！",
             },
           ]}
-          style={{ paddingTop: "2vh" }}
+          style={{ paddingTop: "2rem" }}
         >
           <Input style={{ width: "80%" }} />
         </Form.Item>
@@ -40,14 +40,14 @@ function userNameAndPassword() {
         </Form.Item>
 
         <Form.Item name="remember">
-          <Checkbox style={{ marginLeft: "3vw" }}>记住我</Checkbox>
+          <Checkbox style={{ marginLeft: "3rem" }}>记住我</Checkbox>
         </Form.Item>
 
         <Form.Item style={{ textAlign: "center" }}>
           <Button
             type="primary"
             htmlType="submit"
-            style={{ width: "80%", height: "4vh", fontSize: "1.8vh" }}
+            style={{ width: "80%", height: "rem", fontSize: "1rem" }}
           >
             登录
           </Button>
@@ -77,7 +77,7 @@ function Phone() {
               pattern: new RegExp(/^1(3|4|5|6|7|8|9)\d{9}$/, "g"),
             },
           ]}
-          style={{ paddingTop: "2vh" }}
+          style={{ paddingTop: "2rem" }}
         >
           <Space.Compact
             style={{
@@ -108,7 +108,7 @@ function Phone() {
           <Button
             type="primary"
             htmlType="submit"
-            style={{ width: "80%", height: "4vh", fontSize: "1.8vh" }}
+            style={{ width: "80%", height: "2.5rem", fontSize: "1rem" }}
           >
             手机验证登录
           </Button>

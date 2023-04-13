@@ -1,9 +1,15 @@
 import { Layout, ConfigProvider } from "antd";
 const { Header, Footer, Sider, Content } = Layout;
-import SiderNav from "./sider/sider";
-import Toper from "./toper/toper";
-import Info from "./footer/info";
-import { useState } from "react";
+import SiderNav from "@/components/sider/sider";
+import Toper from "@/components/toper/toper";
+import Info from "@/components/footer/info";
+import Inn from "./inn";
+import Plane from "./plane";
+import Boat from "./boat";
+import Train from "./train";
+import Trip from "./trip";
+import Normal from "./normal";
+import { useEffect, useState } from "react";
 
 // 测试用主页面布局样式
 const headerStyle = {
@@ -13,12 +19,10 @@ const headerStyle = {
   paddingInline: 50,
   lineHeight: "64px",
   backgroundColor: "#fff",
+  borderBottom: "1px solid #eee",
 };
 const contentStyle = {
-  textAlign: "center",
-  lineHeight: "120px",
-  color: "#fff",
-  backgroundColor: "#108ee9",
+  backgroundColor: "#fff",
 };
 const siderStyle = {
   backgroundColor: "#fff",
@@ -27,12 +31,23 @@ const siderStyle = {
 };
 
 const footerStyle = {
-  minHeight: "30vh",
+  minHeight: "25rem",
   backgroundColor: "#f8fafd",
 };
 
 export default function Home() {
   const [collapsed, setCollapsed] = useState(false);
+  // 记录content部分的导航标签
+  const [route, setRoute] = useState("Inn");
+
+  var content = <Inn></Inn>;
+
+  if (route == "Inn") content = <Inn></Inn>;
+  else if (route == "Train") content = <Train></Train>;
+  else if (route == "Boat") content = <Boat></Boat>;
+  else if (route == "Plane") content = <Plane></Plane>;
+  else if (route == "Trip") content = <Trip></Trip>;
+  else content = <Normal></Normal>;
 
   return (
     <ConfigProvider
@@ -44,21 +59,18 @@ export default function Home() {
       }}
     >
       <Layout style={{ minHeight: "100vh" }}>
-        <Sider
-          style={siderStyle}
-          collapsed={collapsed}
-          setCollapsed={setCollapsed}
-        >
+        <Sider style={siderStyle} collapsed={collapsed}>
           <SiderNav
-            setCollapsed={setCollapsed}
+            setcollapsed={setCollapsed}
             collapsed={collapsed}
+            setRoute={setRoute}
           ></SiderNav>
         </Sider>
         <Layout>
           <Header style={headerStyle}>
             <Toper></Toper>
           </Header>
-          <Content style={contentStyle}>Content</Content>
+          <Content style={contentStyle}>{content}</Content>
           <Footer style={footerStyle}>
             <Info></Info>
           </Footer>

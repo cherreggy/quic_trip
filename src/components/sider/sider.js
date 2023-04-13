@@ -1,5 +1,5 @@
 import { createFromIconfontCN } from "@ant-design/icons";
-import { Menu, Button } from "antd";
+import { Menu } from "antd";
 import { useState } from "react";
 
 const IconFont = createFromIconfontCN({
@@ -7,7 +7,7 @@ const IconFont = createFromIconfontCN({
   scriptUrl: "//at.alicdn.com/t/c/font_4006149_d35cbatu5cl.js",
 });
 
-export default function SiderNav({ collapsed, setCollapsed }) {
+export default function SiderNav({ collapsed, setcollapsed, setRoute }) {
   // 导航栏组件
 
   // 标签项设置
@@ -28,27 +28,27 @@ export default function SiderNav({ collapsed, setCollapsed }) {
       "sub1",
       <IconFont type="icon-jiudian" style={{ fontSize: "3vh" }} />,
       [
-        getItem("Option 1", "1"),
-        getItem("Option 2", "2"),
-        getItem("Option 3", "3"),
-        getItem("Option 4", "4"),
+        getItem("1.1", "Inn"),
+        getItem("1.2", "2"),
+        getItem("1.3", "3"),
+        getItem("1.4", "4"),
       ]
     ),
     getItem(
       "机票",
       "sub2",
       <IconFont type="icon-feiji" style={{ fontSize: "3vh" }} />,
-      [getItem("Option 5", "5"), getItem("Option 6", "6")]
+      [getItem("2.1", "Plane"), getItem("Option 6", "6")]
     ),
     getItem(
       "火车票",
       "sub3",
       <IconFont type="icon-huoche" style={{ fontSize: "3vh" }} />,
       [
-        getItem("Option 9", "9"),
-        getItem("Option 10", "10"),
-        getItem("Option 11", "11"),
-        getItem("Option 12", "12"),
+        getItem("3.1", "Train"),
+        getItem("3.2", "10"),
+        getItem("3.3", "11"),
+        getItem("3.4", "12"),
       ]
     ),
     getItem(
@@ -59,10 +59,10 @@ export default function SiderNav({ collapsed, setCollapsed }) {
         style={{ fontSize: "3vh" }}
       />,
       [
-        getItem("Option 9", "13"),
-        getItem("Option 10", "14"),
-        getItem("Option 11", "15"),
-        getItem("Option 12", "16"),
+        getItem("4.1", "Trip"),
+        getItem("4.2", "14"),
+        getItem("4.3", "15"),
+        getItem("4.4", "16"),
       ]
     ),
     getItem(
@@ -70,10 +70,10 @@ export default function SiderNav({ collapsed, setCollapsed }) {
       "sub5",
       <IconFont type="icon-tuijianqiche" style={{ fontSize: "3vh" }} />,
       [
-        getItem("Option 9", "17"),
-        getItem("Option 10", "18"),
-        getItem("Option 11", "19"),
-        getItem("Option 12", "20"),
+        getItem("5.1", "Boat"),
+        getItem("5.2", "18"),
+        getItem("5.3", "19"),
+        getItem("5.4", "20"),
       ]
     ),
     getItem(
@@ -81,10 +81,10 @@ export default function SiderNav({ collapsed, setCollapsed }) {
       "sub6",
       <IconFont type="icon-menpiao" style={{ fontSize: "3vh" }} />,
       [
-        getItem("Option 9", "21"),
-        getItem("Option 10", "22"),
-        getItem("Option 11", "23"),
-        getItem("Option 12", "24"),
+        getItem("6.1", "Ticket"),
+        getItem("6.2", "22"),
+        getItem("6.3", "23"),
+        getItem("6.4", "24"),
       ]
     ),
     getItem(
@@ -92,10 +92,10 @@ export default function SiderNav({ collapsed, setCollapsed }) {
       "sub7",
       <IconFont type="icon-chuzuche" style={{ fontSize: "3vh" }} />,
       [
-        getItem("Option 9", "25"),
-        getItem("Option 10", "26"),
-        getItem("Option 11", "27"),
-        getItem("Option 12", "28"),
+        getItem("7.1", "Car"),
+        getItem("7.2", "26"),
+        getItem("7.3", "27"),
+        getItem("7.4", "28"),
       ]
     ),
   ];
@@ -137,10 +137,18 @@ export default function SiderNav({ collapsed, setCollapsed }) {
     } else {
       setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
     }
+    // console.log(openKeys);
   };
   // 设置折叠值，父组件传入的控制器
   const handleFold = () => {
-    setCollapsed(!collapsed);
+    setcollapsed(!collapsed);
+  };
+
+  // 菜单项点击函数
+  const handleClick = (e) => {
+    console.log(e.key);
+    // 再此设置路由
+    setRoute(e.key);
   };
 
   return (
@@ -159,6 +167,7 @@ export default function SiderNav({ collapsed, setCollapsed }) {
         defaultSelectedKeys={openKeys}
         onOpenChange={onOpenChange}
         items={items}
+        onClick={handleClick}
       />
       <hr style={{ margin: "3vh", width: "80%", border: "1px solid #eee" }} />
       <Menu

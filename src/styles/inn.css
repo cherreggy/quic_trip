@@ -1,0 +1,339 @@
+.wrapper-inn {
+  display: flex;
+  margin: 0 auto;
+  padding-bottom: 1rem;
+  width: 60%;
+  min-height: 60rem;
+  background-color: #fff;
+}
+
+.inn-box {
+  margin-top: 1rem;
+  height: 17rem;
+  padding: 1rem;
+  /* background-color: red; */
+  border-radius: 1rem;
+  background: linear-gradient(45deg, #b342ff, rgb(255, 166, 124)) !important;
+}
+
+.inn-box h2 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  color: white;
+}
+
+.inn-box h5 {
+  font-size: 1rem;
+  color: #eacbff;
+}
+
+.inn-left {
+  flex: 6;
+  /* background-color: skyblue; */
+}
+
+.inn-right {
+  flex: 4;
+  /* background-color: pink; */
+}
+
+.inn-box-forms {
+  height: 75%;
+  /* background-color: #fff; */
+}
+
+.inn-citypicker {
+  height: 4.5rem;
+}
+
+.inn-city .ant-select-selector,
+.inn-box-forms .ant-picker-range {
+  height: 4.5rem !important;
+  font-size: 1.2rem !important;
+  margin-top: 1rem !important;
+}
+
+.inn-city .ant-select-selection-placeholder,
+.inn-city .ant-select-selection-item {
+  line-height: 4.5rem !important;
+}
+
+.inn-city .ant-select-selection-item {
+  font-size: 1.6rem !important;
+}
+
+.inn-box-forms .ant-picker .ant-picker-input > input {
+  text-align: center !important;
+}
+
+.inn-city .ant-select .ant-select-arrow .anticon {
+  margin-top: 1rem !important;
+}
+
+.inn-city .ant-select .ant-select-clear {
+  margin-top: 0.1rem !important;
+  font-size: 1rem !important;
+}
+
+.ant-cascader-dropdown .ant-cascader-menu-item {
+  border-radius: 10rem !important;
+}
+
+.inn-box .ant-picker-range-separator {
+  width: 6rem !important;
+}
+
+.inn-seperator {
+  color: #ccc;
+  font-size: 0.5rem;
+}
+
+.inn-search .anticon svg {
+  margin-top: -0.6rem !important;
+  font-size: 1.5rem !important;
+}
+
+.inn-lined {
+  position: relative;
+}
+
+.inn-lined::after {
+  content: "";
+  position: absolute;
+  height: 4rem;
+  width: 1px;
+  right: 0;
+  top: 0.5rem;
+  background-color: #dadfe6;
+}
+
+.inn-title {
+  color: #ccc;
+}
+
+.ant-cascader-dropdown .ant-cascader-menu {
+  height: 9rem !important;
+}
+
+.inn-small-banner {
+  margin-top: 1rem;
+  height: 6rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.inn-small-banner img {
+  width: 100%;
+  height: 100%;
+}
+
+.ant-carousel .slick-dots-bottom {
+  bottom: 1rem !important;
+  right: -40rem !important;
+}
+
+.ant-carousel .slick-dots-top {
+  top: 5rem !important;
+  left: -15rem !important;
+}
+
+.ant-carousel .slick-dots-bottom li button {
+  height: 0.5rem !important;
+  width: 0.5rem !important;
+  border-radius: 1rem !important;
+}
+
+.ant-carousel .slick-dots-top li button {
+  height: 0.5rem !important;
+  width: 0.5rem !important;
+  border-radius: 1rem !important;
+}
+
+.ant-carousel .slick-dots-bottom li.slick-active button {
+  margin-left: -0.3rem !important;
+  width: 1.5rem !important;
+  transition: none !important;
+}
+
+.ant-carousel .slick-dots-top li.slick-active button {
+  margin-left: -0.3rem !important;
+  width: 1.5rem !important;
+  transition: none !important;
+}
+
+.inn-big-banner {
+  margin-left: 1rem;
+  margin-top: 1rem;
+  height: 40rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  width: 25rem;
+  background-color: #ccc;
+  cursor: pointer;
+}
+
+.inn-big-banner img {
+  height: 40rem;
+  width: 100%;
+  background-color: red;
+}
+
+.big-banner-text {
+  position: absolute;
+  top: 0;
+  left: 10;
+  transform: translate(1.8rem, 1rem);
+  font-size: 1rem;
+  color: white;
+}
+
+.big-banner-item {
+  position: relative;
+}
+
+.big-banner-inn {
+  position: absolute;
+  top: 0;
+  left: 10;
+  transform: translate(12rem, 1rem);
+}
+
+.big-banner-inn li {
+  display: flex;
+  align-items: center;
+  padding: 0.3rem;
+  width: 12rem;
+  height: 3.5rem;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #fff;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+.big-banner-inn li img {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.3rem;
+  margin-right: 0.5rem;
+}
+
+.inn-rec {
+  width: 50rem;
+  padding: 1rem;
+}
+
+.inn-rec-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+  height: 4rem;
+}
+
+.inn-rec-head h2 {
+  line-height: 4rem;
+}
+
+.inn-rec-head .ant-segmented-thumb-motion,
+.inn-rec-head .ant-segmented-item-selected {
+  background-color: #b342ff !important;
+  color: white !important;
+}
+
+.inn-rec-content {
+  /* background-color: red; */
+}
+
+.inn-rec-content ul {
+  display: flex;
+}
+
+.inn-rec-content li {
+  width: 33%;
+  margin: 0.5rem;
+  /* background-color: red; */
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: box-shadow 0.3s;
+}
+
+.inn-rec-content li:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.inn-rec-content img {
+  transition: all 0.3s;
+}
+
+.inn-rec-content li:hover img {
+  transform: scale(1.2);
+}
+
+.inn-rec-content li a:hover {
+  color: #b342ff;
+}
+
+.inn-rec-content li h2 {
+  height: 2rem;
+  line-height: 2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  /* 超出部分显示... */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+}
+
+.inn-rec-content-bottom {
+  padding: 1rem;
+}
+
+.inn-rec-content-bottom p {
+  display: flex;
+  align-items: center;
+}
+
+.inn-rec-content-bottom p img {
+  margin-right: 0.2rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+.inn-rec-content-bottom .rank {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  /* width: 2rem; */
+  height: 1rem;
+}
+
+.inn-rec-content-bottom .price {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ant-carousel .slick-prev,
+.ant-carousel .slick-next,
+.ant-carousel .slick-prev:hover,
+.ant-carousel .slick-next:hover {
+  margin: -1rem 1rem !important;
+  font-size: inherit !important;
+  color: currentColor !important;
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+  background-color: rgba(255, 255, 255, 0.6) !important;
+  line-height: 2.5rem !important;
+  text-align: center !important;
+  z-index: 100 !important;
+  border-radius: 0.5rem !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
