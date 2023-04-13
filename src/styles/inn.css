@@ -221,12 +221,18 @@
   margin-right: 0.5rem;
 }
 
-.inn-rec {
+.inn-rec,
+.sea-rec {
   width: 50rem;
   padding: 1rem;
 }
 
-.inn-rec-head {
+.sea-rec {
+  padding-top: 0;
+}
+
+.inn-rec-head,
+.sea-rec-head {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -234,7 +240,12 @@
   height: 4rem;
 }
 
-.inn-rec-head h2 {
+.sea-rec-head {
+  justify-content: left;
+}
+
+.inn-rec-head h2,
+.sea-rec-head h2 {
   line-height: 4rem;
 }
 
@@ -335,5 +346,119 @@
   text-align: center !important;
   z-index: 100 !important;
   border-radius: 0.5rem !important;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2) !important;
+  transition: all 0.3s !important;
+}
+
+.ant-carousel .slick-prev:hover,
+.ant-carousel .slick-next:hover {
+  transform: scale(1.1) !important;
+}
+
+.sea-rec-body {
+  display: flex;
+  padding: 1rem;
+  /* background-color: red; */
+}
+
+.sea-rec-body .left,
+.sea-rec-body .right {
+  flex: 1;
+  padding: 0.3rem;
+  background: linear-gradient(45deg, #b342ff, rgb(255, 166, 124));
+  border-radius: 0.6rem;
+}
+
+.sea-rec-body .right {
+  background: linear-gradient(45deg, #b342ff, rgb(124, 207, 255));
+}
+
+.sea-rec-body ul {
+  height: 34rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: #fff;
+}
+
+.sea-rec-body ul li {
+  position: relative;
+  display: flex;
+  height: 6rem;
+  /* background-color: blue; */
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.sea-rec-body ul li:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sea-rec-body .left {
+  margin-right: 0.5rem;
+}
+
+.sea-rec-body .right {
+  margin-left: 0.5rem;
+}
+
+.sea-rec-body h2 {
+  height: 3rem;
+  line-height: 3rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+}
+
+.sea-rec-body img {
+  height: 3rem;
+  margin-right: 1rem;
+}
+
+.sea-rec-body ul li img {
+  height: 100%;
+}
+
+.sea-rec-body ul li .info {
+  width: 9rem;
+}
+
+.sea-rec-body ul li .info h5 {
+  margin-top: 0.5rem;
+  font-weight: 700;
+}
+
+.sea-rec-body ul li .info p {
+  color: grey;
+}
+
+.sea-rec-body ul li .info p span {
+  font-size: 0.5rem;
+  color: #b342ff;
+}
+
+.sea-rec-body ul li .price {
+  margin-top: 0.5rem;
+  padding-left: 0.5rem;
+  color: #b342ff;
+}
+
+.sea-rec-body ul li .price span {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.sea-rec-body ul li .marker {
+  position: absolute;
+  width: 1.5rem;
+  height: 1.2rem;
+  line-height: 1.2rem;
+  left: 0;
+  top: 0.5rem;
+  background-color: red;
+  border-radius: 0 0.5rem 0.5rem 0;
+  text-align: center;
+  color: white;
 }

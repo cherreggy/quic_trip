@@ -25,6 +25,7 @@ export default function RecommendInn() {
           prevArrow={<LeftOutlined></LeftOutlined>}
           nextArrow={<RightOutlined></RightOutlined>}
           infinite={false}
+          speed={600}
         >
           {/* 展示两页，每页3个 */}
           <div>

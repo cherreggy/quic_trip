@@ -2,6 +2,7 @@ import BigBanner from "@/components/inn/bigbanner";
 import Booker from "@/components/inn/booker";
 import SmallBanner from "@/components/inn/smallbanner";
 import RecommendInn from "@/components/inn/recommend";
+import SeasonRec from "@/components/inn/seasonrec";
 export default function Inn() {
   return (
     <div>
@@ -16,6 +17,8 @@ export default function Inn() {
           </div>
           {/* 推荐板块 */}
           <RecommendInn></RecommendInn>
+          {/* 当季热推 */}
+          <SeasonRec></SeasonRec>
         </div>
         {/* 右侧吸顶长条 */}
         <div className="inn-right">
