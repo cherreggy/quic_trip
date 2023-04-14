@@ -1,5 +1,114 @@
 .plane-wrapper {
   margin: 0 auto;
   width: 60%;
+  padding: 1rem 0;
   /* background-color: #fff; */
+}
+
+.plane-wrapper .air-pannel {
+  margin-top: -1rem;
+  background-color: #fff;
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+
+.ant-tabs > .ant-tabs-nav .ant-tabs-nav-more,
+.ant-tabs > div > .ant-tabs-nav .ant-tabs-nav-more {
+  display: none !important;
+}
+
+.plane-wrapper .tabs {
+  /* font-weight: 700; */
+  text-align: center;
+  font-size: 1rem;
+  width: 9.77rem;
+}
+
+.air-small-banner {
+  margin-top: 4rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.air-small-banner img {
+  width: 100%;
+}
+
+.air-pannel {
+  /* display: flex; */
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem 3rem;
+  margin-top: 1rem;
+}
+
+.air-op {
+  padding-left: 1.5rem;
+}
+
+.air-options {
+  position: relative;
+  display: flex;
+  /* padding-left: 2rem; */
+}
+
+.air-option-icons {
+  position: absolute;
+  top: 0.3rem;
+  font-weight: 700;
+  color: #9f1bfa;
+}
+
+.air-citypicker {
+  width: 18rem;
+}
+
+.air-citypicker .ant-select-selector {
+  height: 3.5rem !important;
+}
+
+.air-citypicker .ant-select-selection-item,
+.air-citypicker .ant-select-selection-placeholder {
+  text-align: center !important;
+  line-height: 3.5rem !important;
+  font-size: 1.5rem;
+}
+
+.air-citypicker .ant-select-arrow {
+  display: none !important;
+}
+
+.air-citypicker.left .ant-select-selector {
+  border-radius: 1rem 0 0 1rem !important;
+}
+
+.air-citypicker.left .ant-select-selector {
+  border-radius: 1rem 0 0 1rem !important;
+  border-right: none !important;
+}
+
+.air-citypicker.right .ant-select-selector {
+  border-radius: 0 1rem 1rem 0 !important;
+  border-right: none !important;
+}
+
+.air-cities {
+  width: fit-content;
+  position: relative;
+  border-radius: 1rem;
+  display: flex;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.air-change {
+  position: absolute;
+  left: 50%;
+  top: 25%;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  transform: translateX(-50%);
+}
+
+.air-change svg {
+  margin-top: -0.3rem !important;
+  color: #bd67e6;
 }

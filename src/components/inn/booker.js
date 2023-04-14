@@ -61,6 +61,8 @@ export default function Booker() {
       label: <div>五星（钻）</div>,
     },
   ];
+  // 地点的选择
+  const [position, setPosition] = useState("");
   return (
     <div>
       <div className="inn-box">
@@ -79,7 +81,10 @@ export default function Booker() {
                 }}
                 className="inn-city"
               >
-                <CityPicker title={"目的地/酒店名称"}></CityPicker>
+                <CityPicker
+                  title={"目的地/酒店名称"}
+                  setFunc={setPosition}
+                ></CityPicker>
               </Form.Item>
               {/* 时间选择器 */}
               <Form.Item name="date-picker">

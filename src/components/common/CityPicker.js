@@ -1309,6 +1309,7 @@ export default function CityPicker(props) {
   return (
     <div>
       <Cascader
+        className={props.className ? props.className : null}
         options={options}
         onChange={onChange}
         placeholder={props.title}

@@ -1,13 +1,19 @@
 {
-  "components": {
-    "Tabs": {
-      "colorBgContainer": "#9f1bfa",
-      "colorPrimary": "#fff",
-      "colorFillAlter": "#fae8ff",
-      "controlHeight": 32
-    }
-  },
   "token": {
     "colorPrimary": "#9f1bfa"
+  },
+  "components": {
+    "Tabs": {
+      "colorBgContainer": "white",
+      "colorText": "white",
+      "lineWidth": 1,
+      "colorPrimary": "#000",
+      "colorBorderSecondary": "rgba(0, 0, 0, 0)",
+      "colorBorder": "",
+      "colorFillAlter": "#333",
+      "colorTextHeading": "rgba(0, 0, 0, 0.88)",
+      "colorPrimaryHover": "#ccc",
+      "colorPrimaryActive": "#555"
+    }
   }
 }

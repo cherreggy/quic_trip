@@ -38,7 +38,7 @@ const footerStyle = {
 export default function Home() {
   const [collapsed, setCollapsed] = useState(false);
   // 记录content部分的导航标签
-  const [route, setRoute] = useState("Inn");
+  const [route, setRoute] = useState("Plane");
 
   var content = <Inn></Inn>;
 
