@@ -105,9 +105,9 @@ export default function Toper() {
           justifyContent: "center",
           alignItems: "center",
           width: "8vw",
-          height: "3vh",
+          height: "1.5rem",
           borderRight: "1px solid #ddd",
-          padding: "0 1vh",
+          padding: "0 0.5rem",
         }}
       >
         <Popover
@@ -120,8 +120,8 @@ export default function Toper() {
           <IconFont
             type="icon-kefu"
             style={{
-              fontSize: "3vh",
-              margin: "0 1vh",
+              fontSize: "1.5rem",
+              margin: "0 0.5rem",
               cursor: "pointer",
             }}
           />
@@ -158,8 +158,8 @@ export default function Toper() {
           <IconFont
             type="icon-shouji"
             style={{
-              fontSize: "3vh",
-              margin: "0.5vh 1vh 0 1vh",
+              fontSize: "1.5rem",
+              margin: "0.25rem 0.5rem 0 0.5rem",
               cursor: "pointer",
             }}
           />
@@ -172,8 +172,8 @@ export default function Toper() {
           justifyContent: "center",
           alignItems: "center",
           width: "8vw",
-          height: "3vh",
-          padding: "0 1vh",
+          height: "1.5rem",
+          padding: "0 0.5rem",
         }}
       >
         <Popover
@@ -186,8 +186,8 @@ export default function Toper() {
           <IconFont
             type="icon-wuzhangaisheshi"
             style={{
-              fontSize: "3vh",
-              margin: "0 1vh",
+              fontSize: "1.5rem",
+              margin: "0 0.5rem",
               cursor: "pointer",
             }}
           />
@@ -203,8 +203,8 @@ export default function Toper() {
           <IconFont
             type="icon-linzhongguanhuaike"
             style={{
-              fontSize: "3vh",
-              margin: "0 1vh",
+              fontSize: "1.5rem",
+              margin: "0 0.5rem",
               cursor: "pointer",
             }}
           />
