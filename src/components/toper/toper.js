@@ -5,6 +5,7 @@ import { Dropdown, Space, Popover } from "antd";
 import { QRCode } from "antd";
 import { useState } from "react";
 import Login from "./login";
+import Regist from "./regist";
 const { Search } = Input;
 
 const IconFont = createFromIconfontCN({
@@ -12,17 +13,27 @@ const IconFont = createFromIconfontCN({
   scriptUrl: "//at.alicdn.com/t/c/font_4006149_1n9h9l4fw7s.js",
 });
 
-const items = [
-  {
-    label: <a href="javascript:;">查看订单</a>,
-    key: "0",
-  },
-];
-
-export default function Toper() {
+export default function Toper(props) {
+  const items = [
+    {
+      label: (
+        <a
+          href="javascript:;"
+          onClick={() => {
+            props.setRoute("My");
+          }}
+        >
+          查看订单
+        </a>
+      ),
+      key: "0",
+    },
+  ];
   const [api, contextHolder] = notification.useNotification();
   // 登录弹窗状态
   const [isModalOpen, setIsModalOpen] = useState(false);
+  // 注册窗状态
+  const [registOpen, setRegistOpen] = useState(false);
 
   const openNotification = () => {
     api.open({
@@ -46,8 +57,23 @@ export default function Toper() {
     setIsModalOpen(false);
   };
 
+  // 注册按钮点击事件
+  const handleRegist = () => {
+    setRegistOpen(true);
+  };
+  // 注册窗口确认事件
+  const registOk = () => {
+    setRegistOpen(false);
+  };
+
+  // 注册窗口取消事件
+  const registCancel = () => {
+    setRegistOpen(false);
+  };
+
   return (
     <div className="wrapper">
+      {/* 主页图标 */}
       <img src="./logo.png" className="logo" />
       {contextHolder}
       <Search
@@ -76,16 +102,28 @@ export default function Toper() {
           />
           请登录
         </a>
-        <a className="regist">注册</a>
+        <a className="regist" onClick={handleRegist}>
+          注册
+        </a>
         <Login
           isModalOpen={isModalOpen}
           handleCancel={handleCancel}
           handleOk={handleOk}
         ></Login>
+        <Regist
+          isModalOpen={registOpen}
+          handleCancel={registCancel}
+          handleOk={registOk}
+        ></Regist>
         {/* 下拉菜单 */}
         <div style={{ width: "6.5rem" }}>
           <Dropdown menu={{ items }}>
-            <a onClick={(e) => e.preventDefault()} className="menu_item">
+            <a
+              onClick={(e) => {
+                e.preventDefault();
+              }}
+              className="menu_item"
+            >
               <IconFont
                 type="icon-shouye"
                 style={{ fontSize: "1.2rem", marginRight: "0.2rem" }}
