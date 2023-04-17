@@ -215,3 +215,7 @@
   right: -1rem !important;
   bottom: 1rem !important;
 }
+
+.plane-wrapper .ant-tabs {
+  box-shadow: none !important;
+}

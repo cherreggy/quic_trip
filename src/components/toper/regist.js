@@ -5,6 +5,8 @@ import {
   QuestionOutlined,
 } from "@ant-design/icons";
 
+const { Option } = Select;
+
 export default function Regist(props) {
   return (
     <div>

@@ -22,3 +22,19 @@
 .my-bald {
   font-weight: 700;
 }
+
+.personal .ant-card-body {
+  background: linear-gradient(to right, rgb(255, 235, 206), #f0d6ff);
+}
+
+.my-wrapper ul li {
+  padding: 0.5rem 1rem;
+  border: 1px solid #eee;
+  border-radius: 1rem;
+  transition: all 0.5s;
+  margin-bottom: 1rem;
+}
+
+.my-wrapper ul li:hover {
+  box-shadow: 0 4px 16px rgba(69, 88, 115, 0.1);
+}
