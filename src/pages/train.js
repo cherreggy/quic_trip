@@ -3,12 +3,12 @@ import CheapInn from "@/components/train/cheapinn";
 import TrainTrip from "@/components/train/traintrip";
 import TrainHot from "@/components/train/trainhot";
 
-export default function Train() {
+export default function Train(props) {
   return (
     <div className="train-back">
       <div className="train-wrapper">
         {/* 订票组件 */}
-        <TrainBooker></TrainBooker>
+        <TrainBooker setRoute={props.setRoute}></TrainBooker>
         {/* 优惠酒店 */}
         <CheapInn></CheapInn>
         {/* 坐火车去旅行 */}

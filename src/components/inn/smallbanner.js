@@ -1,6 +1,6 @@
 import { Carousel } from "antd";
 
-export default function SmallBanner() {
+export default function SmallBanner(props) {
   return (
     <Carousel
       className="inn-small-banner"
@@ -8,7 +8,7 @@ export default function SmallBanner() {
       autoplaySpeed={2000}
       draggable={true}
     >
-      <div>
+      {/* <div>
         <img src="https://dimg04.c-ctrip.com/images/0zg4612000ap2m6ht3DD7.png" />
       </div>
       <div>
@@ -19,7 +19,12 @@ export default function SmallBanner() {
       </div>
       <div>
         <img src="https://dimg04.c-ctrip.com/images/0zg4o12000as5h90h6782.jpg" />
-      </div>
+      </div> */}
+      {props.data.map((url, ind) => (
+        <div key={ind}>
+          <img src={url} />
+        </div>
+      ))}
     </Carousel>
   );
 }

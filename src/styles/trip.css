@@ -115,13 +115,14 @@
   margin-top: -0.5rem;
 }
 .trip-share-item .img {
-  width: 50%;
+  width: 15rem;
   border-radius: 0.5rem;
   margin-right: 1rem;
-  margin-left: -0.5rem;
+  margin-left: -0.8rem;
   cursor: pointer;
 }
 .trip-share-item {
+  position: relative;
   display: flex;
 }
 
@@ -166,19 +167,22 @@
 }
 
 .trip-share-item .show {
-  position: relative;
+  margin-left: 10rem;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 .trip-share-item .jinghua {
   position: absolute;
   width: 4rem;
-  right: -20rem;
+  right: -10rem;
   top: 2rem;
 }
 
 .trip-share-item .toutiao {
   width: 4rem;
   position: absolute;
-  right: -15rem;
+  right: -5rem;
   top: 2rem;
 }

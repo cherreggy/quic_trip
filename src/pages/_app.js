@@ -8,6 +8,7 @@ import "@/styles/plane.css";
 import "@/styles/train.css";
 import "@/styles/trip.css";
 import "@/styles/my.css";
+import "@/styles/common.css";
 
 export default function App({ Component, pageProps }) {
   return <Component {...pageProps} />;

@@ -1,6 +1,19 @@
 import { Carousel } from "antd";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function AirBanner() {
+  // 存放banner数据
+  const [data, setData] = useState([]);
+  // 请求banner数据
+  const getData = async () => {
+    const result = await axios.get("api/mock/plane/banner");
+    setData([...result.data]);
+  };
+  // 组件初始化操作
+  useEffect(() => {
+    getData();
+  }, []);
   return (
     <Carousel
       className="air-small-banner"
@@ -8,18 +21,11 @@ export default function AirBanner() {
       autoplaySpeed={2000}
       draggable={true}
     >
-      <div>
-        <img src="https://dimg04.c-ctrip.com/images/0zg3e12000awvccxbC694.jpg" />
-      </div>
-      <div>
-        <img src="https://dimg04.c-ctrip.com/images/0zg3q12000aup39a9F63B.jpg" />
-      </div>
-      <div>
-        <img src="https://dimg04.c-ctrip.com/images/0zg2e12000awvcyo69393.jpg" />
-      </div>
-      <div>
-        <img src="https://dimg04.c-ctrip.com/images/0zg5n12000aup5jivD121.jpg" />
-      </div>
+      {data.map((item) => (
+        <div>
+          <img src={item} />
+        </div>
+      ))}
     </Carousel>
   );
 }

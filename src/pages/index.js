@@ -39,15 +39,15 @@ const footerStyle = {
 export default function Home() {
   const [collapsed, setCollapsed] = useState(false);
   // 记录content部分的导航标签
-  const [route, setRoute] = useState("Inn");
+  const [route, setRoute] = useState("Trip");
 
   var content = <Inn></Inn>;
 
   if (route == "Inn") content = <Inn></Inn>;
-  else if (route == "Train") content = <Train></Train>;
-  else if (route == "Boat") content = <Boat></Boat>;
+  else if (route == "Train") content = <Train setRoute={setRoute}></Train>;
+  else if (route == "Boat") content = <Boat setRoute={setRoute}></Boat>;
   else if (route == "Plane") content = <Plane></Plane>;
-  else if (route == "Trip") content = <Trip></Trip>;
+  else if (route == "Trip") content = <Trip setRoute={setRoute}></Trip>;
   else if (route == "My") content = <MyBook></MyBook>;
   else content = <Normal></Normal>;
 

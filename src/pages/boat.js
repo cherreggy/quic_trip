@@ -1,7 +1,7 @@
 import { ProfileOutlined, WhatsAppOutlined } from "@ant-design/icons";
 import BoatBooker from "@/components/boat/boatBooker";
 
-export default function Boat() {
+export default function Boat(props) {
   return (
     <div>
       <div className="boat-wrapper">
@@ -21,7 +21,11 @@ export default function Boat() {
         <div className="bottom">
           <div className="left">
             <h2>汽车票工具箱</h2>
-            <a>
+            <a
+              onClick={() => {
+                props.setRoute("My");
+              }}
+            >
               <ProfileOutlined></ProfileOutlined>
               <span className="text">我的订单</span>
             </a>

@@ -9,33 +9,19 @@ import { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import "dayjs/locale/zh-cn";
 import locale from "antd/locale/zh_CN";
+import axios from "axios";
 
 export default function TripShare() {
+  // 存放原始数据
   const [data, setData] = useState([]);
+  // 请求原始数据
+  const getData = async () => {
+    const result = await axios.get("api/mock/trip/rec");
+    // console.log(result);
+    setData([...result.data]);
+  };
   useEffect(() => {
-    const dataT = [];
-    // 静态页面测试用
-    for (let i = 0; i < 20; i++) {
-      dataT.push({
-        url: "https://youimg1.c-ctrip.com/target/0102c120008gmz1epE5D9_C_286_190.jpg",
-        title: "巴厘岛 | 总有一个假日，要属于bali",
-        username: "筱莲",
-        avatar:
-          "https://dimg04.c-ctrip.com/images/0Z85u120009d7a407CAD8_C_180_180.jpg",
-        detail: "是没想到，提笔写此篇 巴厘岛 之行的回忆时，是此番境况。",
-        img: "152",
-        review: "133",
-        watch: "243357",
-        jinghua: true,
-        toutiao: true,
-      });
-    }
-
-    for (let i = 10; i < 20; i++) {
-      dataT[i].url =
-        "https://youimg1.c-ctrip.com/target/01024120008gdaf0e8112_C_286_190.jpg";
-    }
-    setData([...dataT]);
+    getData();
   }, []);
   return (
     <div>
@@ -99,7 +85,7 @@ export default function TripShare() {
             </List.Item>
           )}
           pagination={{
-            pageSize: 10,
+            pageSize: 8,
             showQuickJumper: true,
           }}
         />

@@ -12,7 +12,7 @@ const IconFont = createFromIconfontCN({
   scriptUrl: "//at.alicdn.com/t/c/font_4006149_h0exp2flkq5.js",
 });
 
-export default function TrainBooker() {
+export default function TrainBooker(props) {
   // 控制是否显示返程日期
   const [showReturn, setShowReturn] = useState(false);
   const handleShow = () => {
@@ -57,7 +57,12 @@ export default function TrainBooker() {
           </Radio.Group>
 
           {/* 右边链接 */}
-          <a className="train-hover">
+          <a
+            className="train-hover"
+            onClick={() => {
+              props.setRoute("My");
+            }}
+          >
             <IconFont type="icon-huoche" className="train-icon"></IconFont>
             火车票订单
             <RightOutlined className="train-right"></RightOutlined>

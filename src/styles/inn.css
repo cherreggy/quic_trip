@@ -279,6 +279,8 @@
 }
 
 .inn-rec-content img {
+  height: 10rem;
+  width: 100%;
   transition: all 0.3s;
 }
 
@@ -418,6 +420,8 @@
 }
 
 .sea-rec-body ul li img {
+  width: 6rem;
+  border-radius: 0.3rem;
   height: 100%;
 }
 
@@ -426,6 +430,11 @@
 }
 
 .sea-rec-body ul li .info h5 {
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
   margin-top: 0.5rem;
   font-weight: 700;
 }
@@ -440,9 +449,11 @@
 }
 
 .sea-rec-body ul li .price {
+  width: 6rem;
   margin-top: 0.5rem;
   padding-left: 0.5rem;
   color: #b342ff;
+  font-size: 0.5rem;
 }
 
 .sea-rec-body ul li .price span {
@@ -450,7 +461,7 @@
   font-weight: 700;
 }
 
-.sea-rec-body ul li .marker {
+.sea-rec-body ul li .marker1 {
   position: absolute;
   width: 1.5rem;
   height: 1.2rem;
@@ -461,4 +472,51 @@
   border-radius: 0 0.5rem 0.5rem 0;
   text-align: center;
   color: white;
+}
+
+.sea-rec-body ul li .marker2 {
+  position: absolute;
+  width: 1.5rem;
+  height: 1.2rem;
+  line-height: 1.2rem;
+  left: 0;
+  top: 0.5rem;
+  background-color: rgb(255, 123, 0);
+  border-radius: 0 0.5rem 0.5rem 0;
+  text-align: center;
+  color: white;
+}
+
+.sea-rec-body ul li .marker3 {
+  position: absolute;
+  width: 1.5rem;
+  height: 1.2rem;
+  line-height: 1.2rem;
+  left: 0;
+  top: 0.5rem;
+  background-color: rgb(255, 187, 0);
+  border-radius: 0 0.5rem 0.5rem 0;
+  text-align: center;
+  color: white;
+}
+
+.sea-rec-body ul li .marker4,
+.sea-rec-body ul li .marker5 {
+  position: absolute;
+  width: 1.5rem;
+  height: 1.2rem;
+  line-height: 1.2rem;
+  left: 0;
+  top: 0.5rem;
+  background-color: #ccc;
+  border-radius: 0 0.5rem 0.5rem 0;
+  text-align: center;
+  color: white;
+}
+
+.big-banner-inn p {
+  width: 7rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }

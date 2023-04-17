@@ -50,7 +50,7 @@ export default function Regist(props) {
               },
             ]}
           >
-            <Select placeholder="select your gender">
+            <Select placeholder="请选择性别">
               <Option value="男">
                 <ManOutlined className="regist-gender"></ManOutlined> 男
               </Option>

@@ -1,32 +1,31 @@
 import { useState, useEffect } from "react";
 import { createFromIconfontCN } from "@ant-design/icons";
+import axios from "axios";
 
 const IconFont = createFromIconfontCN({
   scriptUrl: "//at.alicdn.com/t/c/font_4006149_naeew7b1yn.js",
 });
 
 export default function TrainTrip() {
+  // 存放数据
   const [data, setData] = useState([]);
+  // 请求数据
+  const getData = async () => {
+    const result = await axios.get("api/mock/train/trip");
+    // console.log(result);
+    setData([...result.data]);
+  };
+  // 初始化操作
   useEffect(() => {
-    // 静态页面测试用
-    const tmpData = [];
-    for (let i = 0; i < 4; i++) {
-      tmpData.push({
-        title: "京广高铁",
-        detail: "天南地北任我游",
-        url: "https://pic.c-ctrip.com/railway_v2/zzz_236152_3.jpg",
-        hot: true,
-      });
-    }
-    setData([...tmpData]);
+    getData();
   }, []);
   return (
     <div className="train-trip">
       <h2>坐火车去旅行</h2>
       <p>热门火车旅游线路</p>
       <ul className="train-trip-list">
-        {data.map((item) => (
-          <li>
+        {data.map((item, ind) => (
+          <li key={ind}>
             <img src={item.url} />
             {item.hot ? (
               <div className="hot">
