@@ -81,7 +81,6 @@ export default function PlaneBooker() {
               key: "国内、国际/中国港澳台",
               children: (
                 <div className="air-pannel">
-                  // 表单组
                   <div
                     style={{
                       display: "flex",
@@ -340,7 +339,6 @@ export default function PlaneBooker() {
                       </Popover>
                     </div>
                   </div>
-                  // 订购按钮
                   <Button className="air-book">订购</Button>
                 </div>
               ),

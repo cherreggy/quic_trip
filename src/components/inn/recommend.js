@@ -80,8 +80,8 @@ export default function RecommendInn(props) {
                           </h2>
 
                           <p>
-                            {new Array(item.stars).fill(0).map(() => (
-                              <img src="star.png" />
+                            {new Array(item.stars).fill(0).map((item, ind) => (
+                              <img src="star.png" key={ind} />
                             ))}
                           </p>
                           {/* 评分 */}
@@ -145,8 +145,8 @@ export default function RecommendInn(props) {
 
           {props.data
             .filter((item) => item.city === chosenCity)
-            .map((c) => (
-              <div>
+            .map((c, i) => (
+              <div key={i}>
                 <ul>
                   {c.inns.map((item, ind) =>
                     ind > 3 ? (
@@ -167,8 +167,8 @@ export default function RecommendInn(props) {
                           </h2>
 
                           <p>
-                            {new Array(item.stars).fill(0).map(() => (
-                              <img src="star.png" />
+                            {new Array(item.stars).fill(0).map((item, ind) => (
+                              <img src="star.png" key={ind} />
                             ))}
                           </p>
                           {/* 评分 */}

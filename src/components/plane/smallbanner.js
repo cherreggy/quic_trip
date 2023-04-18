@@ -21,8 +21,8 @@ export default function AirBanner() {
       autoplaySpeed={2000}
       draggable={true}
     >
-      {data.map((item) => (
-        <div>
+      {data.map((item, ind) => (
+        <div key={ind}>
           <img src={item} />
         </div>
       ))}
