@@ -1,4 +1,5 @@
 import MainPage from "./mainpage";
+import { useState, useEffect } from "react";
 
 function NormalBody() {
   return (
@@ -9,16 +10,17 @@ function NormalBody() {
 }
 
 export default function Normal() {
-  console.log(window.location.search.match(new RegExp(`(?<=\\bsub=)[^&]*`))[0]);
+  const [p1, setP1] = useState([]);
+  const [p2, setP2] = useState([]);
+  useEffect(() => {
+    setP1([window.location.search.match(new RegExp(`(?<=\\bpage=)[^&]*`))[0]]);
+    setP2([window.location.search.match(new RegExp(`(?<=\\bsub=)[^&]*`))[0]]);
+  }, []);
   return (
     <MainPage
       content={<NormalBody></NormalBody>}
-      defaultOpenKeys={[
-        window.location.search.match(new RegExp(`(?<=\\bpage=)[^&]*`))[0],
-      ]}
-      defaultSelectedKeys={[
-        window.location.search.match(new RegExp(`(?<=\\bsub=)[^&]*`))[0],
-      ]}
+      defaultOpenKeys={p1}
+      defaultSelectedKeys={p2}
     ></MainPage>
   );
 }

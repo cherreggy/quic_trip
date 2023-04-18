@@ -4,7 +4,7 @@ const Inn = lazy(() => import("./inn"));
 
 export default function Home() {
   return (
-    <Suspense fallback={<Spin />}>
+    <Suspense fallback={<Spin></Spin>}>
       <Inn />
     </Suspense>
   );
