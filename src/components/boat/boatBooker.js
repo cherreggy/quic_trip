@@ -43,8 +43,8 @@ export default function BoatBooker(props) {
         type="card"
         items={[
           {
-            label: "汽车票查询",
-            key: "汽车票查询",
+            label: "汽车票订购",
+            key: "汽车票订购",
             // 汽车票面板
             children: (
               <div className="ticket bus">
@@ -122,8 +122,8 @@ export default function BoatBooker(props) {
             ),
           },
           {
-            label: "船票查询",
-            key: "船票查询",
+            label: "船票订购",
+            key: "船票订购",
             // 船票面板
             children: (
               <div className="ticket bus">

@@ -3,9 +3,11 @@ import { createFromIconfontCN } from "@ant-design/icons";
 import { DownOutlined, RightOutlined } from "@ant-design/icons";
 import { Dropdown, Space, Popover } from "antd";
 import { QRCode } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Login from "./login";
 import Regist from "./regist";
+import Link from "next/link";
+import axios from "axios";
 const { Search } = Input;
 
 const IconFont = createFromIconfontCN({
@@ -16,16 +18,7 @@ const IconFont = createFromIconfontCN({
 export default function Toper(props) {
   const items = [
     {
-      label: (
-        <a
-          href="javascript:;"
-          onClick={() => {
-            props.setRoute("My");
-          }}
-        >
-          查看订单
-        </a>
-      ),
+      label: <Link href="/mybook">查看订单</Link>,
       key: "0",
     },
   ];

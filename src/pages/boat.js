@@ -1,7 +1,8 @@
 import { ProfileOutlined, WhatsAppOutlined } from "@ant-design/icons";
 import BoatBooker from "@/components/boat/boatBooker";
+import MainPage from "./mainpage";
 
-export default function Boat(props) {
+function BoatBody(props) {
   return (
     <div>
       <div className="boat-wrapper">
@@ -41,5 +42,15 @@ export default function Boat(props) {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function Boat() {
+  return (
+    <MainPage
+      content={<BoatBody></BoatBody>}
+      defaultOpenKeys={["5"]}
+      defaultSelectedKeys={["5-1"]}
+    ></MainPage>
   );
 }

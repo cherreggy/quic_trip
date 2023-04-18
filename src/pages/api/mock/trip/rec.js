@@ -101,8 +101,7 @@ const data = [
     avatar:
       "https://dimg04.c-ctrip.com/images/Z80k1d000001ekj8tBC0F_C_180_180.jpg",
     username: "Hi.逸清",
-    detail:
-      "很多人对三亚都会有一种莫名的向往，即便从未踏足过，梦里很多人对三亚都会有一种莫名的向往，即便从未踏足",
+    detail: "很多人对三亚都会有一种莫名的向往",
     img: 162,
     review: 44,
     watch: 157105,
@@ -183,8 +182,7 @@ const data = [
     avatar:
       "https://dimg04.c-ctrip.com/images/Z80t15000000xztddE052_C_180_180.jpg",
     username: "Shirley雪梨酱",
-    detail:
-      "我们总是期待说走就走的旅行，却没有任何时候比现在这段非常时期，更能体会什么是能随时出发的快乐。最近几",
+    detail: "我们总是期待说走就走的旅行",
     img: 119,
     review: 28,
     watch: 75470,

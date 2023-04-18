@@ -2,10 +2,11 @@ import { Input, Button } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import TripShare from "@/components/trip/tripshare";
+import MainPage from "./mainpage";
 import axios from "axios";
 const { Search } = Input;
 
-export default function Trip(props) {
+function TripBody(props) {
   // 存放数据统计
   const [number, setNumber] = useState([]);
   // 请求数据统计
@@ -52,5 +53,15 @@ export default function Trip(props) {
       {/* 下面分页展示 */}
       <TripShare></TripShare>
     </div>
+  );
+}
+
+export default function Trip() {
+  return (
+    <MainPage
+      content={<TripBody></TripBody>}
+      defaultOpenKeys={["4"]}
+      defaultSelectedKeys={["4-1"]}
+    ></MainPage>
   );
 }

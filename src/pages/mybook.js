@@ -1,6 +1,7 @@
 import { Card } from "antd";
+import MainPage from "./mainpage";
 
-export default function MyBook() {
+function MyBookBody() {
   return (
     <div className="my-wrapper">
       {/* 个人信息 */}
@@ -147,4 +148,7 @@ export default function MyBook() {
       </Card>
     </div>
   );
+}
+export default function MyBook() {
+  return <MainPage content={<MyBookBody></MyBookBody>}></MainPage>;
 }

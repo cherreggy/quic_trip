@@ -34,16 +34,6 @@ export default function TrainBooker(props) {
   // 差异天数
   const [day, setDay] = useState(1);
   // 获得差异天数;
-  const getDays = (value) => {
-    // if (value) console.log(value[0].unix(), value[1].unix());
-    if (value)
-      setDay(
-        moment(value[1].format("YYYY-MM-DD")).diff(
-          value[0].format("YYYY-MM-DD"),
-          "days"
-        )
-      );
-  };
 
   return (
     <div>
@@ -91,7 +81,7 @@ export default function TrainBooker(props) {
               className="air-change"
               type="circle"
               icon={<SwapOutlined></SwapOutlined>}
-              onClick={(e) => {
+              onClick={() => {
                 handelExchange();
               }}
             ></Button>

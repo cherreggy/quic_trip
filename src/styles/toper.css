@@ -115,3 +115,7 @@ a {
   margin-left: 50%;
   transform: translateX(-50%);
 }
+
+.wrapper .ant-space-align-center {
+  color: #9f1bfa !important;
+}

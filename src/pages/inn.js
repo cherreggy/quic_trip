@@ -3,9 +3,10 @@ import Booker from "@/components/inn/booker";
 import SmallBanner from "@/components/inn/smallbanner";
 import RecommendInn from "@/components/inn/recommend";
 import SeasonRec from "@/components/inn/seasonrec";
+import MainPage from "./mainpage";
 import axios from "axios";
 import { useEffect, useState } from "react";
-export default function Inn() {
+export function InnBody() {
   // 存放小banner数据：图片的url，列表类型
   const [smallBannerData, setSmallBannerData] = useState([]);
   const getSmallBanner = async () => {
@@ -65,5 +66,15 @@ export default function Inn() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function Inn() {
+  return (
+    <MainPage
+      content={<InnBody></InnBody>}
+      defaultOpenKeys={["1"]}
+      defaultSelectedKeys={["1-1"]}
+    ></MainPage>
   );
 }
