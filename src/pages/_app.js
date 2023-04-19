@@ -9,6 +9,7 @@ import "@/styles/train.css";
 import "@/styles/trip.css";
 import "@/styles/my.css";
 import "@/styles/common.css";
+import "@/styles/dark.css";
 
 export default function App({ Component, pageProps }) {
   return <Component {...pageProps} />;

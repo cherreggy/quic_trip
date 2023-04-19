@@ -1,11 +1,16 @@
 import { Card } from "antd";
 import MainPage from "./mainpage";
+import { ConfigProvider, theme } from "antd";
+import { useEffect, useState } from "react";
 
-function MyBookBody() {
+function MyBookBody(props) {
   return (
     <div className="my-wrapper">
       {/* 个人信息 */}
-      <Card title="个人信息" className="my-card personal">
+      <Card
+        title="个人信息"
+        className={props.dark ? "my-card personal-dark" : "my-card personal"}
+      >
         <p>
           <span className="my-bald">用户名：</span>用户名
         </p>
@@ -150,5 +155,28 @@ function MyBookBody() {
   );
 }
 export default function MyBook() {
-  return <MainPage content={<MyBookBody></MyBookBody>}></MainPage>;
+  const [dark, setDark] = useState(false);
+  useEffect(() => {
+    if (localStorage.getItem("dark") == "true") setDark(true);
+    else setDark(false);
+  }, []);
+  return dark ? (
+    <ConfigProvider
+      theme={{
+        algorithm: theme.darkAlgorithm,
+      }}
+    >
+      <MainPage
+        setDark={setDark}
+        dark={dark}
+        content={<MyBookBody dark={dark}></MyBookBody>}
+      ></MainPage>
+    </ConfigProvider>
+  ) : (
+    <MainPage
+      setDark={setDark}
+      dark={dark}
+      content={<MyBookBody dark={dark}></MyBookBody>}
+    ></MainPage>
+  );
 }

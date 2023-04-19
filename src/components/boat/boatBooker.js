@@ -126,7 +126,7 @@ export default function BoatBooker(props) {
             key: "船票订购",
             // 船票面板
             children: (
-              <div className="ticket bus">
+              <div className="ticket bus boat">
                 <Form style={{ position: "relative" }}>
                   <Form.Item
                     colon={false}

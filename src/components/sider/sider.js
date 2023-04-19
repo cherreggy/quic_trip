@@ -17,6 +17,7 @@ export default function SiderNav({
   setcollapsed,
   defaultOpenKeys,
   defaultSelectedKeys,
+  dark,
 }) {
   const router = useRouter();
   const [data, setData] = useState([]);
@@ -35,6 +36,15 @@ export default function SiderNav({
   // 初始化加载导航栏数据，并且给选中的项目设置样式
   useEffect(() => {
     getData();
+    if (dark)
+      document.querySelector(
+        ".ant-layout-sider-children"
+      ).style.backgroundColor = "#131313";
+    else {
+      document.querySelector(
+        ".ant-layout-sider-children"
+      ).style.backgroundColor = "white";
+    }
   }, []);
   // 导航栏数据加载好后载入菜单1和菜单2
   useEffect(() => {
@@ -105,6 +115,8 @@ export default function SiderNav({
         alignItems: "center",
         flexDirection: "column",
       }}
+      className={dark ? "dark-sider" : null}
+      theme={dark ? "dark" : null}
     >
       <IconFont type="icon-zhankai" className="folder" onClick={handleFold} />
 
@@ -117,6 +129,7 @@ export default function SiderNav({
         defaultSelectedKeys={defaultSelectedKeys}
         openKeys={openKeys}
         onClick={handleClick}
+        motion={null}
       />
     </div>
   );

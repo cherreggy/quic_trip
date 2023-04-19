@@ -1,11 +1,6 @@
-import { Spin } from "antd";
-import { Suspense, lazy } from "react";
-const Inn = lazy(() => import("./inn"));
+import Inn from "./inn";
+import { ConfigProvider, theme } from "antd";
 
 export default function Home() {
-  return (
-    <Suspense fallback={<Spin></Spin>}>
-      <Inn />
-    </Suspense>
-  );
+  return <Inn></Inn>;
 }

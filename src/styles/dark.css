@@ -1,0 +1,220 @@
+/* 导航栏 */
+.dark-sider {
+  background-color: #131313;
+}
+.dark-sider
+  .ant-menu-light
+  .ant-menu-submenu-selected
+  > .ant-menu-submenu-title,
+.ant-menu-light
+  > .ant-menu
+  .ant-menu-submenu-selected
+  > .ant-menu-submenu-title {
+  background-color: #505050 !important;
+}
+
+.dark-sider .ant-menu-submenu-inline:nth-last-child(2)::before {
+  background-color: #333 !important;
+}
+
+.dark-sider .ant-menu-item-active,
+.dark-sider .ant-menu-item-selected {
+  background-color: #242424 !important;
+  color: white !important;
+}
+
+.dark-sider .ant-menu .ant-menu-submenu-title .ant-menu-item-icon svg {
+  background-color: #131313 !important;
+}
+/* 酒店 */
+.dark-inn {
+  background-color: #202020;
+}
+
+.dark-inn .wrapper-inn {
+  background-color: #202020;
+}
+
+.dark-inn .dark-use.ant-space-compact {
+  background-color: #131313 !important;
+  border: none !important;
+}
+
+.dark-inn .inn-box {
+  background: linear-gradient(45deg, #2b0046, rgb(129, 1, 134)) !important;
+}
+
+.dark-inn .inn-box .ant-btn-primary {
+  background-color: #39004b !important;
+}
+
+.dark-inn .sea-rec-body ul {
+  background-color: #131313;
+  color: white;
+}
+
+.dark-inn .left {
+  background: linear-gradient(45deg, #2b0046, rgb(129, 1, 134)) !important;
+}
+
+.dark-inn .inn-rec-head h2,
+.dark-inn .sea-rec-head h2 {
+  color: grey;
+}
+
+.dark-inn .right {
+  background: linear-gradient(45deg, #050046, rgb(1, 47, 134)) !important;
+}
+/* 机票 */
+.dark-plane .air-pannel {
+  background-color: #505050;
+}
+
+.dark-plane .air-change {
+  background-color: #505050;
+  border: none;
+}
+
+.dark-plane .air-range {
+  border: none !important;
+}
+
+.dark-plane .air-seperator {
+  background-color: #505050;
+}
+
+.dark-plane .air-people-but {
+  background-color: #303030;
+  border: 1px solid #202020;
+}
+
+.dark-plane .air-people {
+  background-color: #202020;
+  border: none !important;
+}
+
+.dark-plane .air-book {
+  background: linear-gradient(45deg, rgb(67, 0, 122), #741100) !important;
+  border-color: #505050;
+}
+
+.dark-plane .air-book:hover {
+  border-color: #606060;
+}
+/* 火车票 */
+.train-back-dark .train-pannel {
+  background-color: #101010;
+  color: white;
+}
+
+.train-back-dark .train-pannel .train-cities::before {
+  background: linear-gradient(to right, rgb(58, 50, 38), #3b2f42);
+}
+
+.train-back-dark .train-dates {
+  background: linear-gradient(to right, rgb(58, 50, 38), #3b2f42);
+}
+
+.train-back-dark .train-book {
+  background: linear-gradient(45deg, rgb(131, 0, 0), #5e009465);
+  border: none;
+}
+
+.train-back-dark .train-book:hover {
+  border: none;
+}
+
+.train-back-dark .air-change {
+  background-color: #444;
+  border: none;
+}
+
+.train-back-dark .train-selector a {
+  background-color: #333;
+  color: grey;
+  border-color: white;
+}
+
+.train-back-dark .train-selector a.active {
+  background-color: #555;
+  color: white;
+}
+
+.train-back-dark {
+  color: white;
+}
+
+.train-back-dark .train-hot-list li:hover {
+  background-color: #333;
+}
+
+.trip-wrapper-dark .trip-data .item {
+  background-color: #333;
+  color: white;
+}
+
+.trip-wrapper-dark .trip-data .item::after {
+  background-color: #444;
+  box-shadow: 0 0 5px #242424;
+}
+
+.trip-data .item:last-child:after {
+  width: 0;
+}
+
+.trip-wrapper-dark .trip-data .homepage-button-arrow {
+  border-left-color: white;
+}
+
+.trip-wrapper-dark {
+  color: white;
+}
+
+.boat-wrapper-dark .top .left .ticket {
+  background-color: #333;
+}
+
+.boat-wrapper-dark .ant-tabs-card > .ant-tabs-nav .ant-tabs-ink-bar {
+  visibility: visible;
+  background-color: #999 !important;
+}
+
+.boat-wrapper-dark
+  .ant-tabs-card.ant-tabs-top
+  > .ant-tabs-nav
+  .ant-tabs-tab-active {
+  background-color: #333 !important;
+  border: none !important;
+}
+
+.boat-wrapper-dark .ant-tabs-tab {
+  background-color: #222 !important;
+}
+.boat-wrapper-dark .ant-btn-circle {
+  background-color: #555 !important;
+  color: white !important;
+}
+
+.boat-wrapper-dark .bus .ant-btn {
+  background: linear-gradient(
+    45deg,
+    rgb(92, 59, 44),
+    rgb(83, 51, 105)
+  ) !important;
+}
+
+.boat-wrapper-dark .boat .ant-btn {
+  background: linear-gradient(
+    45deg,
+    rgb(53, 70, 71),
+    rgb(80, 42, 70)
+  ) !important;
+}
+
+.my-wrapper .personal-dark .ant-card-body {
+  background: linear-gradient(
+    to right,
+    rgb(65, 50, 27),
+    rgb(59, 31, 75)
+  ) !important;
+}

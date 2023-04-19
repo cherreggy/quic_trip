@@ -3,10 +3,15 @@ import CheapInn from "@/components/train/cheapinn";
 import TrainTrip from "@/components/train/traintrip";
 import TrainHot from "@/components/train/trainhot";
 import MainPage from "./mainpage";
+import { useState, useEffect } from "react";
+import { ConfigProvider, theme } from "antd";
 
 function TrainBody(props) {
   return (
-    <div className="train-back">
+    <div
+      className={props.dark ? "train-back-dark" : "train-back"}
+      style={{ backgroundColor: props.dark ? "#202020" : "white" }}
+    >
       <div className="train-wrapper">
         {/* 订票组件 */}
         <TrainBooker setRoute={props.setRoute}></TrainBooker>
@@ -26,11 +31,32 @@ function TrainBody(props) {
 }
 
 export default function Train() {
-  return (
+  const [dark, setDark] = useState(false);
+  useEffect(() => {
+    if (localStorage.getItem("dark") == "true") setDark(true);
+    else setDark(false);
+  }, []);
+  return dark ? (
+    <ConfigProvider
+      theme={{
+        algorithm: theme.darkAlgorithm,
+      }}
+    >
+      <MainPage
+        content={<TrainBody dark={dark}></TrainBody>}
+        defaultOpenKeys={["3"]}
+        defaultSelectedKeys={["3-1"]}
+        setDark={setDark}
+        dark={dark}
+      ></MainPage>
+    </ConfigProvider>
+  ) : (
     <MainPage
-      content={<TrainBody></TrainBody>}
+      content={<TrainBody dark={dark}></TrainBody>}
       defaultOpenKeys={["3"]}
       defaultSelectedKeys={["3-1"]}
+      setDark={setDark}
+      dark={dark}
     ></MainPage>
   );
 }

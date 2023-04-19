@@ -1,7 +1,8 @@
 import { QRCode } from "antd";
 import { Col, Row, Divider } from "antd";
+import { useEffect } from "react";
 
-export default function Info() {
+export default function Info(props) {
   return (
     <div>
       {/* 上部大片信息部分 */}

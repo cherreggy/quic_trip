@@ -13,6 +13,13 @@
   background-position: top center;
 }
 
+.train-back-dark {
+  background-image: url(/train-dark.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: top center;
+}
+
 .train-pannel {
   background-color: #fff;
   padding: 1.5rem;

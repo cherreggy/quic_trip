@@ -1,11 +1,14 @@
 import { ProfileOutlined, WhatsAppOutlined } from "@ant-design/icons";
 import BoatBooker from "@/components/boat/boatBooker";
 import MainPage from "./mainpage";
+import Router from "next/router";
+import { useState, useEffect } from "react";
+import { ConfigProvider, theme } from "antd";
 
 function BoatBody(props) {
   return (
     <div>
-      <div className="boat-wrapper">
+      <div className={props.dark ? "boat-wrapper-dark" : "boat-wrapper"}>
         {/* 上部 */}
         <div className="top">
           <div className="left">
@@ -24,7 +27,7 @@ function BoatBody(props) {
             <h2>汽车票工具箱</h2>
             <a
               onClick={() => {
-                props.setRoute("My");
+                Router.push("/mybook");
               }}
             >
               <ProfileOutlined></ProfileOutlined>
@@ -46,11 +49,32 @@ function BoatBody(props) {
 }
 
 export default function Boat() {
-  return (
+  const [dark, setDark] = useState(false);
+  useEffect(() => {
+    if (localStorage.getItem("dark") == "true") setDark(true);
+    else setDark(false);
+  }, []);
+  return dark ? (
+    <ConfigProvider
+      theme={{
+        algorithm: theme.darkAlgorithm,
+      }}
+    >
+      <MainPage
+        content={<BoatBody dark={dark}></BoatBody>}
+        defaultOpenKeys={["5"]}
+        defaultSelectedKeys={["5-1"]}
+        setDark={setDark}
+        dark={dark}
+      ></MainPage>
+    </ConfigProvider>
+  ) : (
     <MainPage
-      content={<BoatBody></BoatBody>}
+      content={<BoatBody dark={dark}></BoatBody>}
       defaultOpenKeys={["5"]}
       defaultSelectedKeys={["5-1"]}
+      setDark={setDark}
+      dark={dark}
     ></MainPage>
   );
 }

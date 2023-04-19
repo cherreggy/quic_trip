@@ -11,6 +11,7 @@ import locale from "antd/locale/zh_CN";
 const IconFont = createFromIconfontCN({
   scriptUrl: "//at.alicdn.com/t/c/font_4006149_h0exp2flkq5.js",
 });
+import Router from "next/router";
 
 export default function TrainBooker(props) {
   // 控制是否显示返程日期
@@ -50,7 +51,7 @@ export default function TrainBooker(props) {
           <a
             className="train-hover"
             onClick={() => {
-              props.setRoute("My");
+              Router.push("/mybook");
             }}
           >
             <IconFont type="icon-huoche" className="train-icon"></IconFont>

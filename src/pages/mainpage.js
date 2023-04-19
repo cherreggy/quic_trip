@@ -15,8 +15,21 @@ const headerStyle = {
   backgroundColor: "#fff",
   borderBottom: "1px solid #eee",
 };
+
+const headerStyleDark = {
+  display: "flex",
+  textAlign: "center",
+  height: 64,
+  paddingInline: 50,
+  lineHeight: "64px",
+  backgroundColor: "#fff",
+  borderBottom: "1px solid #333",
+};
 const contentStyle = {
   backgroundColor: "#fff",
+};
+const contentStyleDark = {
+  backgroundColor: "#202020",
 };
 const siderStyle = {
   backgroundColor: "#fff",
@@ -29,10 +42,17 @@ const footerStyle = {
   backgroundColor: "#f8fafd",
 };
 
+const footerStyleDark = {
+  minHeight: "25rem",
+  backgroundColor: "#131313",
+};
+
 export default function MainPage({
   content,
   defaultOpenKeys,
   defaultSelectedKeys,
+  setDark,
+  dark,
 }) {
   const [collapsed, setCollapsed] = useState(false);
   // console.log(defaultOpenKeys, defaultSelectedKeys);
@@ -53,15 +73,18 @@ export default function MainPage({
             collapsed={collapsed}
             defaultOpenKeys={defaultOpenKeys}
             defaultSelectedKeys={defaultSelectedKeys}
+            dark={dark}
           ></SiderNav>
         </Sider>
         <Layout>
-          <Header style={headerStyle}>
-            <Toper></Toper>
+          <Header style={dark ? headerStyleDark : headerStyle}>
+            <Toper setDark={setDark} dark={dark}></Toper>
           </Header>
-          <Content style={contentStyle}>{content}</Content>
-          <Footer style={footerStyle}>
-            <Info></Info>
+          <Content style={dark ? contentStyleDark : contentStyle}>
+            {content}
+          </Content>
+          <Footer style={dark ? footerStyleDark : footerStyle}>
+            <Info dark={dark}></Info>
           </Footer>
         </Layout>
       </Layout>

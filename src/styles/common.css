@@ -1,3 +1,12 @@
-img {
-  background-color: #ccc !;
+/* 轮播图图片背景色设为灰色，用于加载占位 */
+.slick-slide li div:first-child img {
+  background-color: #ccc !important;
+}
+
+.inn-small-banner img {
+  background-color: #ccc !important;
+}
+
+.trip-share-item > img {
+  background-color: #ccc !important;
 }

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import TripShare from "@/components/trip/tripshare";
 import MainPage from "./mainpage";
 import axios from "axios";
+import { ConfigProvider, theme } from "antd";
 const { Search } = Input;
 
 function TripBody(props) {
@@ -18,7 +19,7 @@ function TripBody(props) {
     getNumber();
   }, []);
   return (
-    <div className="trip-wrapper">
+    <div className={props.dark ? "trip-wrapper-dark" : "trip-wrapper"}>
       {/* 上部搜索栏 */}
       <div className="trip-top">
         <Search
@@ -51,17 +52,38 @@ function TripBody(props) {
         </div>
       </div>
       {/* 下面分页展示 */}
-      <TripShare></TripShare>
+      <TripShare dark={props.dark}></TripShare>
     </div>
   );
 }
 
 export default function Trip() {
-  return (
+  const [dark, setDark] = useState(false);
+  useEffect(() => {
+    if (localStorage.getItem("dark") == "true") setDark(true);
+    else setDark(false);
+  }, []);
+  return dark ? (
+    <ConfigProvider
+      theme={{
+        algorithm: theme.darkAlgorithm,
+      }}
+    >
+      <MainPage
+        content={<TripBody dark={dark}></TripBody>}
+        defaultOpenKeys={["4"]}
+        defaultSelectedKeys={["4-1"]}
+        setDark={setDark}
+        dark={dark}
+      ></MainPage>
+    </ConfigProvider>
+  ) : (
     <MainPage
-      content={<TripBody></TripBody>}
+      content={<TripBody dark={dark}></TripBody>}
       defaultOpenKeys={["4"]}
       defaultSelectedKeys={["4-1"]}
+      setDark={setDark}
+      dark={dark}
     ></MainPage>
   );
 }

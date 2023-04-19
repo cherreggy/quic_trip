@@ -1,12 +1,22 @@
 import BigBanner from "@/components/inn/bigbanner";
 import Booker from "@/components/inn/booker";
 import SmallBanner from "@/components/inn/smallbanner";
-import RecommendInn from "@/components/inn/recommend";
+// import RecommendInn from "@/components/inn/recommend";
 import SeasonRec from "@/components/inn/seasonrec";
 import MainPage from "./mainpage";
 import axios from "axios";
 import { useEffect, useState } from "react";
-export function InnBody() {
+import { Spin, ConfigProvider, theme } from "antd";
+import dynamic from "next/dynamic";
+const RecommendInn = dynamic(() => import("@/components/inn/recommend"), {
+  loading: () => (
+    <div style={{ width: "100%", height: "100%" }}>
+      <Spin></Spin>
+    </div>
+  ),
+});
+
+export function InnBody(props) {
   // 存放小banner数据：图片的url，列表类型
   const [smallBannerData, setSmallBannerData] = useState([]);
   const getSmallBanner = async () => {
@@ -44,7 +54,7 @@ export function InnBody() {
   }, []);
 
   return (
-    <div>
+    <div className={props.dark ? "dark-inn" : null}>
       <div className="wrapper-inn">
         {/* 左侧长条内容 */}
         <div className="inn-left">
@@ -56,6 +66,7 @@ export function InnBody() {
           </div>
           {/* 推荐板块 */}
           <RecommendInn data={recData}></RecommendInn>
+
           {/* 当季热推 */}
           <SeasonRec></SeasonRec>
         </div>
@@ -70,11 +81,32 @@ export function InnBody() {
 }
 
 export default function Inn() {
-  return (
+  const [dark, setDark] = useState(false);
+  useEffect(() => {
+    if (localStorage.getItem("dark") == "true") setDark(true);
+    else setDark(false);
+  }, []);
+  return dark ? (
+    <ConfigProvider
+      theme={{
+        algorithm: theme.darkAlgorithm,
+      }}
+    >
+      <MainPage
+        content={<InnBody dark={dark}></InnBody>}
+        defaultOpenKeys={["1"]}
+        defaultSelectedKeys={["1-1"]}
+        setDark={setDark}
+        dark={dark}
+      ></MainPage>
+    </ConfigProvider>
+  ) : (
     <MainPage
-      content={<InnBody></InnBody>}
+      content={<InnBody dark={dark}></InnBody>}
       defaultOpenKeys={["1"]}
       defaultSelectedKeys={["1-1"]}
+      setDark={setDark}
+      dark={dark}
     ></MainPage>
   );
 }

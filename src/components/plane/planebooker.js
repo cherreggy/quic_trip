@@ -15,7 +15,7 @@ const IconFont = createFromIconfontCN({
   scriptUrl: "//at.alicdn.com/t/c/font_4006149_h0exp2flkq5.js",
 });
 
-export default function PlaneBooker() {
+export default function PlaneBooker(props) {
   // 设置出发和到达城市
   const [start, setStart] = useState([]);
   const [end, setEnd] = useState([]);
@@ -50,21 +50,21 @@ export default function PlaneBooker() {
   };
 
   return (
-    <div>
+    <div className={props.dark ? "dark-plane" : null}>
       <ConfigProvider
         theme={{
           token: {
-            colorPrimary: "#9f1bfa",
+            colorPrimary: props.dark ? "#3d1155" : "#9f1bfa",
           },
           components: {
             Tabs: {
-              colorBgContainer: "white",
+              colorBgContainer: props.dark ? "#505050" : "white",
               colorText: "white",
               lineWidth: 1,
-              colorPrimary: "#000",
+              colorPrimary: props.dark ? "#fff" : "#000",
               colorBorderSecondary: "rgba(0, 0, 0, 0)",
               colorBorder: "",
-              colorFillAlter: "#6d0099",
+              colorFillAlter: props.dark ? "#3d1155" : "#6d0099",
               colorTextHeading: "rgba(0, 0, 0, 0.88)",
               colorPrimaryHover: "#ccc",
               colorPrimaryActive: "#555",

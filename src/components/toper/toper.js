@@ -1,7 +1,7 @@
 import { Input, notification } from "antd";
 import { createFromIconfontCN } from "@ant-design/icons";
 import { DownOutlined, RightOutlined } from "@ant-design/icons";
-import { Dropdown, Space, Popover } from "antd";
+import { Dropdown, Space, Popover, Switch } from "antd";
 import { QRCode } from "antd";
 import { useEffect, useState } from "react";
 import Login from "./login";
@@ -64,8 +64,23 @@ export default function Toper(props) {
     setRegistOpen(false);
   };
 
+  // 黑夜模式按钮切换
+  const changeDark = (e) => {
+    localStorage.setItem("dark", e);
+    props.setDark(e);
+    // console.log(localStorage.getItem("dark"), e);
+  };
+
+  useEffect(() => {
+    if (props.dark) {
+      document.querySelector(".ant-layout-header").style.backgroundColor =
+        "#131313";
+      document.querySelector(".login").style.backgroundColor = "#505050";
+    }
+  });
+
   return (
-    <div className="wrapper">
+    <div className={"wrapper"}>
       {/* 主页图标 */}
       <img src="./logo.png" className="logo" />
       {contextHolder}
@@ -76,6 +91,21 @@ export default function Toper(props) {
         onSearch={openNotification}
       />
       {/* 右侧信息栏 */}
+      {/* 黑夜模式切换 */}
+      <div style={{ width: "35rem" }}>
+        <span style={!props.dark ? { color: "#9f1bfa" } : { color: "white" }}>
+          黑夜模式：
+        </span>
+        <Switch
+          style={
+            props.dark
+              ? { backgroundColor: "#505050" }
+              : { backgroundColor: "#f4e7ff" }
+          }
+          onChange={changeDark}
+          checked={props.dark}
+        />
+      </div>
       <div
         className="tools"
         style={{

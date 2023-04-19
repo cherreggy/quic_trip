@@ -11,7 +11,7 @@ import "dayjs/locale/zh-cn";
 import locale from "antd/locale/zh_CN";
 import axios from "axios";
 
-export default function TripShare() {
+export default function TripShare(props) {
   // 存放原始数据
   const [data, setData] = useState([]);
   // 请求原始数据
@@ -24,7 +24,7 @@ export default function TripShare() {
     getData();
   }, []);
   return (
-    <div>
+    <div className={props.dark ? "trip-share-dark" : null}>
       {/* 题目 */}
       <div className="trip-share-head">
         <h3>推荐游记</h3>

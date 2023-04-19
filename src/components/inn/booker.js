@@ -115,6 +115,7 @@ export default function Booker() {
 
           <Form style={{ display: "flex", marginTop: "1.5rem" }}>
             <Space.Compact
+              className="dark-use"
               style={{
                 flex: "8",
                 backgroundColor: "white",

@@ -24,7 +24,7 @@ export default function SeasonRec() {
       tmp.push({ label: item.city, value: ind });
     });
     setCityList([...tmp]);
-    console.log(tmp);
+    // console.log(tmp);
   };
   // console.log("构造函数", data);
   // 初始化和读数据操作
