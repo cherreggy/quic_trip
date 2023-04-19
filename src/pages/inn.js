@@ -81,6 +81,8 @@ export function InnBody(props) {
 }
 
 export default function Inn() {
+  // 控制客服机器人
+  const [open, setOpen] = useState(false);
   const [dark, setDark] = useState(false);
   useEffect(() => {
     if (localStorage.getItem("dark") == "true") setDark(true);
@@ -98,6 +100,8 @@ export default function Inn() {
         defaultSelectedKeys={["1-1"]}
         setDark={setDark}
         dark={dark}
+        open={open}
+        setOpen={setOpen}
       ></MainPage>
     </ConfigProvider>
   ) : (
@@ -107,6 +111,8 @@ export default function Inn() {
       defaultSelectedKeys={["1-1"]}
       setDark={setDark}
       dark={dark}
+      open={open}
+      setOpen={setOpen}
     ></MainPage>
   );
 }

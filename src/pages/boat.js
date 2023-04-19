@@ -33,7 +33,11 @@ function BoatBody(props) {
               <ProfileOutlined></ProfileOutlined>
               <span className="text">我的订单</span>
             </a>
-            <a>
+            <a
+              onClick={() => {
+                props.setOpen(!props.open);
+              }}
+            >
               <WhatsAppOutlined></WhatsAppOutlined>
               <span className="text">在线客服</span>
             </a>
@@ -50,6 +54,8 @@ function BoatBody(props) {
 
 export default function Boat() {
   const [dark, setDark] = useState(false);
+  // 控制客服机器人
+  const [open, setOpen] = useState(false);
   useEffect(() => {
     if (localStorage.getItem("dark") == "true") setDark(true);
     else setDark(false);
@@ -61,20 +67,26 @@ export default function Boat() {
       }}
     >
       <MainPage
-        content={<BoatBody dark={dark}></BoatBody>}
+        content={
+          <BoatBody dark={dark} open={open} setOpen={setOpen}></BoatBody>
+        }
         defaultOpenKeys={["5"]}
         defaultSelectedKeys={["5-1"]}
         setDark={setDark}
         dark={dark}
+        open={open}
+        setOpen={setOpen}
       ></MainPage>
     </ConfigProvider>
   ) : (
     <MainPage
-      content={<BoatBody dark={dark}></BoatBody>}
+      content={<BoatBody dark={dark} open={open} setOpen={setOpen}></BoatBody>}
       defaultOpenKeys={["5"]}
       defaultSelectedKeys={["5-1"]}
       setDark={setDark}
       dark={dark}
+      open={open}
+      setOpen={setOpen}
     ></MainPage>
   );
 }

@@ -31,6 +31,7 @@ function TrainBody(props) {
 }
 
 export default function Train() {
+  const [open, setOpen] = useState(false);
   const [dark, setDark] = useState(false);
   useEffect(() => {
     if (localStorage.getItem("dark") == "true") setDark(true);
@@ -48,6 +49,8 @@ export default function Train() {
         defaultSelectedKeys={["3-1"]}
         setDark={setDark}
         dark={dark}
+        open={open}
+        setOpen={setOpen}
       ></MainPage>
     </ConfigProvider>
   ) : (
@@ -57,6 +60,8 @@ export default function Train() {
       defaultSelectedKeys={["3-1"]}
       setDark={setDark}
       dark={dark}
+      open={open}
+      setOpen={setOpen}
     ></MainPage>
   );
 }

@@ -10,6 +10,9 @@ import "@/styles/trip.css";
 import "@/styles/my.css";
 import "@/styles/common.css";
 import "@/styles/dark.css";
+import "@chatui/core/dist/index.css";
+// import '@chatui/core/es/styles/index.less';
+import "@/styles/chat.css";
 
 export default function App({ Component, pageProps }) {
   return <Component {...pageProps} />;

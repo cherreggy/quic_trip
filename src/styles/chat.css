@@ -1,0 +1,25 @@
+.chat {
+  position: fixed;
+  width: 400px;
+  height: 400px;
+  right: 10px;
+  bottom: 10px;
+  border-radius: 1rem;
+  z-index: 999;
+  text-align: left;
+}
+
+.ChatApp {
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(69, 88, 115, 0.2);
+}
+
+.ChatApp .Navbar {
+  background: linear-gradient(45deg, rgb(255, 0, 0), #a200ff);
+  color: white;
+}
+
+.Navbar-title {
+  color: white;
+}

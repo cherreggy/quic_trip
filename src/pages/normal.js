@@ -17,6 +17,7 @@ export default function Normal() {
     setP1([window.location.search.match(new RegExp(`(?<=\\bpage=)[^&]*`))[0]]);
     setP2([window.location.search.match(new RegExp(`(?<=\\bsub=)[^&]*`))[0]]);
   }, []);
+  const [open, setOpen] = useState(false);
   const [dark, setDark] = useState(false);
   useEffect(() => {
     if (localStorage.getItem("dark") == "true") setDark(true);
@@ -34,6 +35,8 @@ export default function Normal() {
         defaultSelectedKeys={p2}
         setDark={setDark}
         dark={dark}
+        open={open}
+        setOpen={setOpen}
       ></MainPage>
     </ConfigProvider>
   ) : (
@@ -43,6 +46,8 @@ export default function Normal() {
       defaultSelectedKeys={p2}
       setDark={setDark}
       dark={dark}
+      open={open}
+      setOpen={setOpen}
     ></MainPage>
   );
 }

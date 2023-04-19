@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import Login from "./login";
 import Regist from "./regist";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+const ChatPage = dynamic(() => import("../chat"), { ssr: false });
 import axios from "axios";
 const { Search } = Input;
 
@@ -81,6 +83,7 @@ export default function Toper(props) {
 
   return (
     <div className={"wrapper"}>
+      {props.open ? <ChatPage /> : null}
       {/* 主页图标 */}
       <img src="./logo.png" className="logo" />
       {contextHolder}
@@ -172,6 +175,7 @@ export default function Toper(props) {
         }}
       >
         <Popover
+          onClick={() => props.setOpen(!props.open)}
           content={
             <div>
               <p>客服机器人小Q</p>

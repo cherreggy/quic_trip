@@ -58,6 +58,7 @@ function TripBody(props) {
 }
 
 export default function Trip() {
+  const [open, setOpen] = useState(false);
   const [dark, setDark] = useState(false);
   useEffect(() => {
     if (localStorage.getItem("dark") == "true") setDark(true);
@@ -75,6 +76,8 @@ export default function Trip() {
         defaultSelectedKeys={["4-1"]}
         setDark={setDark}
         dark={dark}
+        open={open}
+        setOpen={setOpen}
       ></MainPage>
     </ConfigProvider>
   ) : (
@@ -84,6 +87,8 @@ export default function Trip() {
       defaultSelectedKeys={["4-1"]}
       setDark={setDark}
       dark={dark}
+      open={open}
+      setOpen={setOpen}
     ></MainPage>
   );
 }

@@ -53,6 +53,8 @@ export default function MainPage({
   defaultSelectedKeys,
   setDark,
   dark,
+  open,
+  setOpen,
 }) {
   const [collapsed, setCollapsed] = useState(false);
   // console.log(defaultOpenKeys, defaultSelectedKeys);
@@ -78,7 +80,12 @@ export default function MainPage({
         </Sider>
         <Layout>
           <Header style={dark ? headerStyleDark : headerStyle}>
-            <Toper setDark={setDark} dark={dark}></Toper>
+            <Toper
+              setDark={setDark}
+              dark={dark}
+              open={open}
+              setOpen={setOpen}
+            ></Toper>
           </Header>
           <Content style={dark ? contentStyleDark : contentStyle}>
             {content}
