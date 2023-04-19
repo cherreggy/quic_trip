@@ -83,7 +83,7 @@ export default function Toper(props) {
 
   return (
     <div className={"wrapper"}>
-      {props.open ? <ChatPage /> : null}
+      {props.open ? <ChatPage dark={props.dark} /> : null}
       {/* 主页图标 */}
       <img src="./logo.png" className="logo" />
       {contextHolder}

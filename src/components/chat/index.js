@@ -44,7 +44,7 @@ const defaultQuickReplies = [
   },
 ];
 
-export default function ChatPage() {
+export default function ChatPage(props) {
   // 消息列表
   const { messages, appendMsg, setTyping } = useMessages(initialMessages);
 
@@ -131,7 +131,7 @@ export default function ChatPage() {
   }
 
   return (
-    <div className="chat">
+    <div className={props.dark ? "chat-dark" : "chat"}>
       <Chat
         navbar={{ title: "智能助理小Q" }}
         messages={messages}

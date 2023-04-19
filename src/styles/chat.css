@@ -9,6 +9,56 @@
   text-align: left;
 }
 
+.chat-dark {
+  position: fixed;
+  width: 400px;
+  height: 400px;
+  right: 10px;
+  bottom: 10px;
+  border-radius: 1rem;
+  z-index: 999;
+  text-align: left;
+  background-color: #333;
+}
+
+.chat-dark .Input {
+  background-color: #202020;
+  color: white;
+}
+
+.chat-dark .Composer-actions .Btn {
+  background: linear-gradient(45deg, rgb(90, 0, 0), #3f0063) !important;
+}
+
+.chat-dark .Navbar {
+  background: linear-gradient(45deg, rgb(90, 0, 0), #3f0063) !important;
+  border: none;
+}
+
+.chat-dark .ChatFooter {
+  background-color: #333;
+}
+
+.chat-dark .ScrollView {
+  background-color: #333;
+}
+
+.chat-dark .QuickReply {
+  background-color: #555;
+}
+
+.chat-dark .highlight {
+  border-color: white;
+}
+
+.chat-dark .Bubble {
+  background-color: #777;
+}
+
+.chat-dark .MessageContainer {
+  background-color: #444;
+}
+
 .ChatApp {
   border-radius: 1rem;
   overflow: hidden;

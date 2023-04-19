@@ -5,6 +5,7 @@ import TripShare from "@/components/trip/tripshare";
 import MainPage from "./mainpage";
 import axios from "axios";
 import { ConfigProvider, theme } from "antd";
+import Router from "next/router";
 const { Search } = Input;
 
 function TripBody(props) {
@@ -33,7 +34,7 @@ function TripBody(props) {
         <Button
           className="trip-my"
           onClick={() => {
-            props.setRoute("My");
+            Router.push("/mybook");
           }}
         >
           我的主页 <div className="homepage-button-arrow"></div>
