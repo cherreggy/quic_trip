@@ -4,6 +4,8 @@ import MainPage from "./mainpage";
 import Router from "next/router";
 import { useState, useEffect } from "react";
 import { ConfigProvider, theme } from "antd";
+import { useRouter } from "next/router";
+import { Progress } from "antd";
 
 function BoatBody(props) {
   return (
@@ -53,6 +55,39 @@ function BoatBody(props) {
 }
 
 export default function Boat() {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
+  useEffect(() => {
+    const handleStart = () => {
+      setLoading(true);
+      setProgress(0);
+      const timer = setInterval(() => {
+        setProgress((oldProgress) => {
+          if (oldProgress === 90) {
+            clearInterval(timer);
+          }
+          return Math.min(oldProgress + 10, 90);
+        });
+      }, 200);
+    };
+
+    const handleComplete = () => {
+      setLoading(false);
+      setProgress(100);
+    };
+
+    router.events.on("routeChangeStart", handleStart);
+    router.events.on("routeChangeComplete", handleComplete);
+    router.events.on("routeChangeError", handleComplete);
+
+    return () => {
+      router.events.off("routeChangeStart", handleStart);
+      router.events.off("routeChangeComplete", handleComplete);
+      router.events.off("routeChangeError", handleComplete);
+    };
+  }, [router]);
+
   const [dark, setDark] = useState(false);
   // 控制客服机器人
   const [open, setOpen] = useState(false);
@@ -61,11 +96,33 @@ export default function Boat() {
     else setDark(false);
   }, []);
   return dark ? (
-    <ConfigProvider
-      theme={{
-        algorithm: theme.darkAlgorithm,
-      }}
-    >
+    <>
+      {loading && (
+        <Progress percent={progress} showInfo={false} strokeColor="#9f1bfa" />
+      )}
+      <ConfigProvider
+        theme={{
+          algorithm: theme.darkAlgorithm,
+        }}
+      >
+        <MainPage
+          content={
+            <BoatBody dark={dark} open={open} setOpen={setOpen}></BoatBody>
+          }
+          defaultOpenKeys={["5"]}
+          defaultSelectedKeys={["5-1"]}
+          setDark={setDark}
+          dark={dark}
+          open={open}
+          setOpen={setOpen}
+        ></MainPage>
+      </ConfigProvider>
+    </>
+  ) : (
+    <>
+      {loading && (
+        <Progress percent={progress} showInfo={false} strokeColor="#9f1bfa" />
+      )}
       <MainPage
         content={
           <BoatBody dark={dark} open={open} setOpen={setOpen}></BoatBody>
@@ -77,16 +134,6 @@ export default function Boat() {
         open={open}
         setOpen={setOpen}
       ></MainPage>
-    </ConfigProvider>
-  ) : (
-    <MainPage
-      content={<BoatBody dark={dark} open={open} setOpen={setOpen}></BoatBody>}
-      defaultOpenKeys={["5"]}
-      defaultSelectedKeys={["5-1"]}
-      setDark={setDark}
-      dark={dark}
-      open={open}
-      setOpen={setOpen}
-    ></MainPage>
+    </>
   );
 }

@@ -7,6 +7,8 @@ import axios from "axios";
 import { ConfigProvider, theme } from "antd";
 import Router from "next/router";
 const { Search } = Input;
+import { useRouter } from "next/router";
+import { Progress } from "antd";
 
 function TripBody(props) {
   // 存放数据统计
@@ -59,6 +61,39 @@ function TripBody(props) {
 }
 
 export default function Trip() {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
+  useEffect(() => {
+    const handleStart = () => {
+      setLoading(true);
+      setProgress(0);
+      const timer = setInterval(() => {
+        setProgress((oldProgress) => {
+          if (oldProgress === 90) {
+            clearInterval(timer);
+          }
+          return Math.min(oldProgress + 10, 90);
+        });
+      }, 200);
+    };
+
+    const handleComplete = () => {
+      setLoading(false);
+      setProgress(100);
+    };
+
+    router.events.on("routeChangeStart", handleStart);
+    router.events.on("routeChangeComplete", handleComplete);
+    router.events.on("routeChangeError", handleComplete);
+
+    return () => {
+      router.events.off("routeChangeStart", handleStart);
+      router.events.off("routeChangeComplete", handleComplete);
+      router.events.off("routeChangeError", handleComplete);
+    };
+  }, [router]);
+
   const [open, setOpen] = useState(false);
   const [dark, setDark] = useState(false);
   useEffect(() => {
@@ -66,11 +101,31 @@ export default function Trip() {
     else setDark(false);
   }, []);
   return dark ? (
-    <ConfigProvider
-      theme={{
-        algorithm: theme.darkAlgorithm,
-      }}
-    >
+    <>
+      {loading && (
+        <Progress percent={progress} showInfo={false} strokeColor="#9f1bfa" />
+      )}
+      <ConfigProvider
+        theme={{
+          algorithm: theme.darkAlgorithm,
+        }}
+      >
+        <MainPage
+          content={<TripBody dark={dark}></TripBody>}
+          defaultOpenKeys={["4"]}
+          defaultSelectedKeys={["4-1"]}
+          setDark={setDark}
+          dark={dark}
+          open={open}
+          setOpen={setOpen}
+        ></MainPage>
+      </ConfigProvider>
+    </>
+  ) : (
+    <>
+      {loading && (
+        <Progress percent={progress} showInfo={false} strokeColor="#9f1bfa" />
+      )}
       <MainPage
         content={<TripBody dark={dark}></TripBody>}
         defaultOpenKeys={["4"]}
@@ -80,16 +135,6 @@ export default function Trip() {
         open={open}
         setOpen={setOpen}
       ></MainPage>
-    </ConfigProvider>
-  ) : (
-    <MainPage
-      content={<TripBody dark={dark}></TripBody>}
-      defaultOpenKeys={["4"]}
-      defaultSelectedKeys={["4-1"]}
-      setDark={setDark}
-      dark={dark}
-      open={open}
-      setOpen={setOpen}
-    ></MainPage>
+    </>
   );
 }

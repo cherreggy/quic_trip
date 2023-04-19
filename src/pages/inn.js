@@ -8,6 +8,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Spin, ConfigProvider, theme } from "antd";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
+import { Progress } from "antd";
 const RecommendInn = dynamic(() => import("@/components/inn/recommend"), {
   loading: () => (
     <div style={{ width: "100%", height: "100%" }}>
@@ -81,6 +83,38 @@ export function InnBody(props) {
 }
 
 export default function Inn() {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
+  useEffect(() => {
+    const handleStart = () => {
+      setLoading(true);
+      setProgress(0);
+      const timer = setInterval(() => {
+        setProgress((oldProgress) => {
+          if (oldProgress === 90) {
+            clearInterval(timer);
+          }
+          return Math.min(oldProgress + 10, 90);
+        });
+      }, 200);
+    };
+
+    const handleComplete = () => {
+      setLoading(false);
+      setProgress(100);
+    };
+
+    router.events.on("routeChangeStart", handleStart);
+    router.events.on("routeChangeComplete", handleComplete);
+    router.events.on("routeChangeError", handleComplete);
+
+    return () => {
+      router.events.off("routeChangeStart", handleStart);
+      router.events.off("routeChangeComplete", handleComplete);
+      router.events.off("routeChangeError", handleComplete);
+    };
+  }, [router]);
   // 控制客服机器人
   const [open, setOpen] = useState(false);
   const [dark, setDark] = useState(false);
@@ -89,11 +123,31 @@ export default function Inn() {
     else setDark(false);
   }, []);
   return dark ? (
-    <ConfigProvider
-      theme={{
-        algorithm: theme.darkAlgorithm,
-      }}
-    >
+    <>
+      {loading && (
+        <Progress percent={progress} showInfo={false} strokeColor="#9f1bfa" />
+      )}
+      <ConfigProvider
+        theme={{
+          algorithm: theme.darkAlgorithm,
+        }}
+      >
+        <MainPage
+          content={<InnBody dark={dark}></InnBody>}
+          defaultOpenKeys={["1"]}
+          defaultSelectedKeys={["1-1"]}
+          setDark={setDark}
+          dark={dark}
+          open={open}
+          setOpen={setOpen}
+        ></MainPage>
+      </ConfigProvider>
+    </>
+  ) : (
+    <>
+      {loading && (
+        <Progress percent={progress} showInfo={false} strokeColor="#9f1bfa" />
+      )}
       <MainPage
         content={<InnBody dark={dark}></InnBody>}
         defaultOpenKeys={["1"]}
@@ -103,16 +157,6 @@ export default function Inn() {
         open={open}
         setOpen={setOpen}
       ></MainPage>
-    </ConfigProvider>
-  ) : (
-    <MainPage
-      content={<InnBody dark={dark}></InnBody>}
-      defaultOpenKeys={["1"]}
-      defaultSelectedKeys={["1-1"]}
-      setDark={setDark}
-      dark={dark}
-      open={open}
-      setOpen={setOpen}
-    ></MainPage>
+    </>
   );
 }
