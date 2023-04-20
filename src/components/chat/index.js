@@ -4,6 +4,8 @@ import React from "react";
 import dynamic from "next/dynamic";
 import { Bubble, useMessages } from "@chatui/core";
 import { Image } from "@chatui/core";
+import { Button } from "antd";
+import { CloseOutlined } from "@ant-design/icons";
 
 const Chat = dynamic(() => import("@chatui/core"), { ssr: false });
 
@@ -132,6 +134,14 @@ export default function ChatPage(props) {
 
   return (
     <div className={props.dark ? "chat-dark" : "chat"}>
+      <Button
+        icon={<CloseOutlined></CloseOutlined>}
+        type="ghost"
+        className="chat-close"
+        onClick={() => {
+          props.setOpen(false);
+        }}
+      ></Button>
       <Chat
         navbar={{ title: "智能助理小Q" }}
         messages={messages}

@@ -28,6 +28,7 @@
 }
 
 .my-wrapper ul li {
+  position: relative;
   padding: 0.5rem 1rem;
   border: 1px solid #eee;
   border-radius: 1rem;
@@ -37,4 +38,11 @@
 
 .my-wrapper ul li:hover {
   box-shadow: 0 4px 16px rgba(69, 88, 115, 0.1);
+}
+
+.my-wrapper .ant-btn {
+  position: absolute !important;
+  top: 50% !important;
+  right: 2rem !important;
+  transform: translateY(-50%) !important;
 }

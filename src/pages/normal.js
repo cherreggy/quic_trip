@@ -18,6 +18,27 @@ export default function Normal() {
   const [progress, setProgress] = useState(0);
   const [p1, setP1] = useState([]);
   const [p2, setP2] = useState([]);
+  // 解决强制刷新问题
+  // useEffect(() => {
+  //   const handleRouteChange = (url) => {
+  //     // 检查URL是否发生变化
+  //     if (url !== router.asPath) {
+  //       // router.push(url);
+  //       console.log(url);
+  //     }
+  //   };
+
+  //   // 监听路由变化
+  //   router.events.on("routeChangeStart", handleRouteChange);
+
+  //   // 清除事件监听器
+  //   return () => {
+  //     router.events.off("routeChangeStart", handleRouteChange);
+  //   };
+  // }, [router]);
+  // useEffect(()=>{
+
+  // },[])
   // 进度条的设置
   useEffect(() => {
     const handleStart = () => {
@@ -28,9 +49,10 @@ export default function Normal() {
           if (oldProgress === 90) {
             clearInterval(timer);
           }
+          console.log(oldProgress + 10);
           return Math.min(oldProgress + 10, 90);
         });
-      }, 200);
+      }, 100);
     };
 
     const handleComplete = () => {
@@ -52,7 +74,7 @@ export default function Normal() {
   useEffect(() => {
     setP1([window.location.search.match(new RegExp(`(?<=\\bpage=)[^&]*`))[0]]);
     setP2([window.location.search.match(new RegExp(`(?<=\\bsub=)[^&]*`))[0]]);
-  }, []);
+  }, [router]);
   const [open, setOpen] = useState(false);
   const [dark, setDark] = useState(false);
   useEffect(() => {

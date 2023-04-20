@@ -1,9 +1,10 @@
-import { Card } from "antd";
+import { Button, Card } from "antd";
 import MainPage from "./mainpage";
 import { ConfigProvider, theme } from "antd";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { Progress } from "antd";
+import { Popconfirm } from "antd";
 
 function MyBookBody(props) {
   return (
@@ -30,6 +31,14 @@ function MyBookBody(props) {
       <Card title="酒店订单" className="my-card">
         <ul>
           <li>
+            <Popconfirm
+              title="删除订单"
+              description="你确定删除该订单吗？"
+              okText="确定"
+              cancelText="取消"
+            >
+              <Button danger>删除</Button>
+            </Popconfirm>
             <p>
               <span className="my-bald">目的地：</span>上海
             </p>
@@ -50,6 +59,14 @@ function MyBookBody(props) {
             </p>
           </li>
           <li>
+            <Popconfirm
+              title="删除订单"
+              description="你确定删除该订单吗？"
+              okText="确定"
+              cancelText="取消"
+            >
+              <Button danger>删除</Button>
+            </Popconfirm>
             <p>
               <span className="my-bald">目的地：</span>上海
             </p>
@@ -75,6 +92,14 @@ function MyBookBody(props) {
       <Card title="机票订单" className="my-card">
         <ul>
           <li>
+            <Popconfirm
+              title="删除订单"
+              description="你确定删除该订单吗？"
+              okText="确定"
+              cancelText="取消"
+            >
+              <Button danger>删除</Button>
+            </Popconfirm>
             <p>
               <span className="my-bald">旅程类型：</span>单程
             </p>
@@ -106,6 +131,14 @@ function MyBookBody(props) {
       <Card title="火车票订单" className="my-card">
         <ul>
           <li>
+            <Popconfirm
+              title="删除订单"
+              description="你确定删除该订单吗？"
+              okText="确定"
+              cancelText="取消"
+            >
+              <Button danger>删除</Button>
+            </Popconfirm>
             <p>
               <span className="my-bald">旅程类型：</span>单程
             </p>
@@ -125,6 +158,14 @@ function MyBookBody(props) {
       <Card title="汽车票订单" className="my-card">
         <ul>
           <li>
+            <Popconfirm
+              title="删除订单"
+              description="你确定删除该订单吗？"
+              okText="确定"
+              cancelText="取消"
+            >
+              <Button danger>删除</Button>
+            </Popconfirm>
             <p>
               <span className="my-bald">出发城市：</span>上海
             </p>
@@ -141,6 +182,14 @@ function MyBookBody(props) {
       <Card title="船票订单" className="my-card">
         <ul>
           <li>
+            <Popconfirm
+              title="删除订单"
+              description="你确定删除该订单吗？"
+              okText="确定"
+              cancelText="取消"
+            >
+              <Button danger>删除</Button>
+            </Popconfirm>
             <p>
               <span className="my-bald">出发城市：</span>上海
             </p>

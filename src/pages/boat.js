@@ -2,12 +2,15 @@ import { ProfileOutlined, WhatsAppOutlined } from "@ant-design/icons";
 import BoatBooker from "@/components/boat/boatBooker";
 import MainPage from "./mainpage";
 import Router from "next/router";
-import { useState, useEffect } from "react";
-import { ConfigProvider, theme } from "antd";
+import { useState, useEffect, useContext } from "react";
+import { ConfigProvider, theme, message } from "antd";
 import { useRouter } from "next/router";
 import { Progress } from "antd";
+import { ValueContext } from "./_app";
 
 function BoatBody(props) {
+  // 根组件状态
+  const { isShow, setisShow, token, setToken } = useContext(ValueContext);
   return (
     <div>
       <div className={props.dark ? "boat-wrapper-dark" : "boat-wrapper"}>
@@ -29,7 +32,11 @@ function BoatBody(props) {
             <h2>汽车票工具箱</h2>
             <a
               onClick={() => {
-                Router.push("/mybook");
+                if (token) {
+                  Router.push("/mybook");
+                } else {
+                  message.error("您还没有登录！");
+                }
               }}
             >
               <ProfileOutlined></ProfileOutlined>

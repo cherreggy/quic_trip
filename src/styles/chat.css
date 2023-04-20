@@ -73,3 +73,11 @@
 .Navbar-title {
   color: white;
 }
+
+.chat-close {
+  position: absolute;
+  top: 0.2rem;
+  right: 0.5rem;
+  color: white;
+  z-index: 1000 !important;
+}

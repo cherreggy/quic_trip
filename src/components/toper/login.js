@@ -1,8 +1,61 @@
 import { Modal, Tabs } from "antd";
-import { Button, Checkbox, Form, Input, Space } from "antd";
+import { message, Button, Checkbox, Form, Input, Space } from "antd";
 import { QRCode } from "antd";
+import { useEffect, useState, useContext } from "react";
+import { ValueContext } from "@/pages/_app";
 
-function userNameAndPassword() {
+function UserNameAndPassword(props) {
+  // 根组件状态
+  const { isShow, setisShow, token, setToken } = useContext(ValueContext);
+  // 表单
+  const [form] = Form.useForm();
+  // 是否记住我
+  const [rememberMe, setRememberMe] = useState(false);
+  // 点击登录按钮逻辑
+  const handleLogin = () => {
+    // 先验证表单
+    form
+      .validateFields()
+      .then((values) => {
+        // 判断用户名是否存在
+        let exist =
+          values.username === "111" ||
+          values.username === "我的名字很长长长长长长长长";
+        if (exist) {
+          // 判断用户名密码是否匹配
+          let consist =
+            (values.username === "111" && values.password === "111") ||
+            (values.username === "我的名字很长长长长长长长长" &&
+              values.password === "111");
+          // console.log(values);
+          if (consist) {
+            // 登陆成功
+            // 判断是否记住用户名，写入本地，下次自动登录
+            if (rememberMe) {
+              // 写入本地存储
+              localStorage.setItem("token", values.username);
+              // 设置临时token
+              setToken(values.username);
+              // 关闭弹窗
+              props.setIsModalOpen(false);
+            } else {
+              // 设置临时token
+              setToken(values.username);
+              // 关闭弹窗
+              props.setIsModalOpen(false);
+            }
+          } else {
+            message.error("用户名密码不匹配！");
+          }
+        } else {
+          message.error("用户名不存在！");
+        }
+      })
+      .catch((err) => {
+        message.error("请正确填写用户名密码！");
+        console.log(err);
+      });
+  };
   // 用户名密码登录样式
   return (
     <div>
@@ -11,6 +64,7 @@ function userNameAndPassword() {
         labelCol={{
           span: 6,
         }}
+        form={form}
       >
         <Form.Item
           label="用户名"
@@ -40,14 +94,24 @@ function userNameAndPassword() {
         </Form.Item>
 
         <Form.Item name="remember">
-          <Checkbox style={{ marginLeft: "3rem" }}>记住我</Checkbox>
+          <Checkbox
+            style={{ marginLeft: "3rem" }}
+            onChange={(e) => {
+              // 设置是否记住我
+              setRememberMe(e.target.checked);
+            }}
+          >
+            记住我
+          </Checkbox>
         </Form.Item>
 
         <Form.Item style={{ textAlign: "center" }}>
           <Button
             type="primary"
             htmlType="submit"
+            size="large"
             style={{ width: "80%", height: "rem", fontSize: "1rem" }}
+            onClick={handleLogin}
           >
             登录
           </Button>
@@ -58,6 +122,70 @@ function userNameAndPassword() {
 }
 
 function Phone() {
+  // 存放随机验证码
+  const [valiNum, setValiNum] = useState("");
+  // 标记获取验证码功能是否可用
+  const [countdown, setCountdown] = useState(10);
+  const [disabled, setDisabled] = useState(false);
+  // 保存计时器的引用，以便能够即使销毁，防止内存泄漏
+  const [timer, setTimer] = useState(null);
+  // 组件卸载时释放定时器
+  useEffect(() => {
+    return () => {
+      clearInterval(timer);
+    };
+  }, [timer]);
+
+  // 提示泡泡显示
+  const showMessage = (m) => {
+    if (m) {
+      // console.log(m.errorFields[0].errors[0]);
+      message.error(m.errorFields[0].errors[0]);
+    } else {
+      // 生成随机验证码
+      let rand = ("000000" + Math.floor(Math.random() * 999999)).slice(-6);
+      message.success("你的验证码：" + rand);
+      // 将验证码存储到状态
+      setValiNum(rand);
+    }
+  };
+  // 表单定义
+  const [form] = Form.useForm();
+  // 点击获取验证码操作
+  const handlePhone = () => {
+    // 验证表单操作
+    form
+      .validateFields(["phonenum"])
+      .then(() => {
+        // 验证成功后发送随机验证码
+        showMessage();
+        // 设置按钮为disabled
+        setDisabled(true);
+        setCountdown(10);
+        // 每秒减少倒计时的值
+        const t = setInterval(() => {
+          setCountdown((old) => {
+            if (old == 1) {
+              clearInterval(timer);
+              setDisabled(false);
+            }
+            return old - 1;
+          });
+        }, 1000);
+        setTimer(t);
+        // // 倒计时结束后重置状态
+        // setTimeout(() => {
+        //   clearInterval(intervalId);
+        //   setCountdown(60);
+        //   setDisabled(false);
+        // }, 60000);
+      })
+      .catch((err) => {
+        showMessage(err);
+      });
+  };
+  // 点击手机验证码登录逻辑
+  const handleLogin = () => {};
   // 手机号登录样式
   return (
     <div>
@@ -66,6 +194,7 @@ function Phone() {
         labelCol={{
           span: 6,
         }}
+        form={form}
       >
         <Form.Item
           label="手机号"
@@ -85,8 +214,12 @@ function Phone() {
             }}
           >
             <Input />
-            <Button style={{ backgroundColor: "#9f1bfa", color: "white" }}>
-              发送验证码
+            <Button
+              style={{ backgroundColor: "#9f1bfa", color: "white" }}
+              onClick={handlePhone}
+              disabled={disabled}
+            >
+              {disabled ? `${countdown}秒后重新发送` : "发送验证码"}
             </Button>
           </Space.Compact>
         </Form.Item>
@@ -109,6 +242,7 @@ function Phone() {
             type="primary"
             htmlType="submit"
             style={{ width: "80%", height: "2.5rem", fontSize: "1rem" }}
+            onClick={handleLogin}
           >
             手机验证登录
           </Button>
@@ -119,8 +253,18 @@ function Phone() {
 }
 
 export default function Login(props) {
-  const uname = userNameAndPassword();
-  const phone = Phone();
+  const uname = (
+    <UserNameAndPassword
+      setIsModalOpen={props.setIsModalOpen}
+      open={props.isModalOpen}
+    ></UserNameAndPassword>
+  );
+  const phone = (
+    <Phone
+      setIsModalOpen={props.setIsModalOpen}
+      open={props.isModalOpen}
+    ></Phone>
+  );
   return (
     <Modal
       title={null}

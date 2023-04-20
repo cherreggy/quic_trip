@@ -1,16 +1,19 @@
 import { Input, notification } from "antd";
 import { createFromIconfontCN } from "@ant-design/icons";
 import { DownOutlined, RightOutlined } from "@ant-design/icons";
-import { Dropdown, Space, Popover, Switch } from "antd";
+import { Dropdown, Space, Popover, Switch, Button, message } from "antd";
 import { QRCode } from "antd";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Login from "./login";
 import Regist from "./regist";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-const ChatPage = dynamic(() => import("../chat"), { ssr: false });
 import axios from "axios";
 const { Search } = Input;
+import { ValueContext } from "../../pages/_app";
+import Router from "next/router";
+
+const ChatPage = dynamic(() => import("../chat"), { ssr: false });
 
 const IconFont = createFromIconfontCN({
   // 阿里巴巴矢量图库项目链接
@@ -18,10 +21,30 @@ const IconFont = createFromIconfontCN({
 });
 
 export default function Toper(props) {
+  // 无障碍模式切换、本地是否存储了用户信息：根组件状态
+  const { isShow, setisShow, token, setToken } = useContext(ValueContext);
   const items = [
     {
-      label: <Link href="/mybook">查看订单</Link>,
+      label: (
+        <a
+          onClick={() => {
+            if (token) {
+              Router.push("/mybook");
+            } else {
+              message.error("您还没有登录！");
+            }
+          }}
+        >
+          查看订单
+        </a>
+      ),
       key: "0",
+    },
+  ];
+  const items1 = [
+    {
+      label: "?",
+      key: "1",
     },
   ];
   const [api, contextHolder] = notification.useNotification();
@@ -72,18 +95,26 @@ export default function Toper(props) {
     props.setDark(e);
     // console.log(localStorage.getItem("dark"), e);
   };
-
+  // 黑夜模式处理
   useEffect(() => {
     if (props.dark) {
       document.querySelector(".ant-layout-header").style.backgroundColor =
         "#131313";
       document.querySelector(".login").style.backgroundColor = "#505050";
     }
-  });
-
+  }, [props.dark]);
+  // 处理退出登录
+  const handleExit = () => {
+    setToken(null);
+    localStorage.removeItem("token");
+    // 自动跳回首页
+    Router.push("/");
+  };
   return (
     <div className={"wrapper"}>
-      {props.open ? <ChatPage dark={props.dark} /> : null}
+      {props.open ? (
+        <ChatPage dark={props.dark} open={props.open} setOpen={props.setOpen} />
+      ) : null}
       {/* 主页图标 */}
       <img src="./logo.png" className="logo" />
       {contextHolder}
@@ -117,22 +148,45 @@ export default function Toper(props) {
           paddingRight: "0.5rem",
         }}
       >
-        <a className="login" onClick={handleLogin}>
-          <IconFont
-            type="icon-avatar"
-            style={{
-              fontSize: "1.8rem",
-              marginLeft: "-0.5rem",
-              marginRight: "0.5rem",
-            }}
-          />
-          请登录
-        </a>
+        {token ? (
+          <Popover
+            placement="bottom"
+            title={null}
+            content={<Button onClick={handleExit}>退出登录</Button>}
+            trigger="hover"
+          >
+            <a className="login">
+              <IconFont
+                type="icon-avatar"
+                style={{
+                  fontSize: "1.8rem",
+                  marginLeft: "-0.5rem",
+                  marginRight: "0.5rem",
+                }}
+              />
+              <span className="login-inner">{token}</span>
+            </a>
+          </Popover>
+        ) : (
+          <a className="login" onClick={handleLogin}>
+            <IconFont
+              type="icon-avatar"
+              style={{
+                fontSize: "1.8rem",
+                marginLeft: "-0.5rem",
+                marginRight: "0.5rem",
+              }}
+            />
+            <span className="login-inner">请登录</span>
+          </a>
+        )}
+
         <a className="regist" onClick={handleRegist}>
           注册
         </a>
         <Login
           isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
           handleCancel={handleCancel}
           handleOk={handleOk}
         ></Login>
@@ -242,6 +296,7 @@ export default function Toper(props) {
         }}
       >
         <Popover
+          onClick={() => setisShow(!isShow)}
           content={
             <div>
               <p>无障碍模式</p>
