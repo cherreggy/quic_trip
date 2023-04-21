@@ -35,7 +35,7 @@ export default function handler(req, res) {
     if (users.indexOf(req.body.username) === -1) {
       res.send({
         status: 203,
-        message: "用户不存在",
+        message: users.toString(),
       });
     } else {
       const u = users[users.indexOf(req.body.username)];
