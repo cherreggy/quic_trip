@@ -143,6 +143,9 @@ export default function TrainBooker(props) {
                   "YYYY年MM月DD日"
                 )}
                 placeholder="出发日期"
+                onChange={(e) => {
+                  setStartDate(e.format("YYYY-MM-DD"));
+                }}
               ></DatePicker>
               <div className="train-date-right">
                 {showReturn ? (
@@ -152,6 +155,9 @@ export default function TrainBooker(props) {
                         return current < moment().startOf("day");
                       }}
                       placeholder="返程日期"
+                      onChange={(e) => {
+                        setEndDate(e.format("YYYY-MM-DD"));
+                      }}
                     ></DatePicker>
                     <Button
                       className="train-hide"
