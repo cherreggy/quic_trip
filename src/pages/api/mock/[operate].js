@@ -30,7 +30,7 @@ export default function handler(req, res) {
       });
     }
   } else if (op.operate == "login") {
-    var users = fs.readdirSync("./package");
+    var users = fs.readdirSync("/");
     users = users.map((item) => item.split(".")[0]);
     if (users.indexOf(req.body.username) === -1) {
       res.send({
@@ -39,7 +39,7 @@ export default function handler(req, res) {
       });
     } else {
       const u = users[users.indexOf(req.body.username)];
-      var userinfo = JSON.parse(fs.readFileSync(`./${u}.json`));
+      var userinfo = JSON.parse(fs.readFileSync(`/${u}.json`));
       if (userinfo.password === req.body.password) {
         res.send({
           status: 200,
