@@ -57,6 +57,7 @@ export default function App({ Component, pageProps }) {
 
   // 处理登录时的token状态和函数
   const [token, setToken] = useState(null);
+  // console.log(token);
   // 根组件刷新时查看本地是否存了token，存了则取出token
   useEffect(() => {
     let t = localStorage.getItem("token");

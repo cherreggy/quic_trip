@@ -24,9 +24,17 @@ export default function Wuzhangai(props) {
       ? props.Filter("invert(100%)")
       : props.Filter("none");
   };
-  const handleReset = () => props.Reset(1.0);
+  const handleReset = () => {
+    props.Filter("none");
+    props.bigCursor("auto");
+    props.showLines(false);
+    props.Reset(1.0);
+  };
 
-  const handleClose = () => props.Isshow(!props.isshowvalue);
+  const handleClose = () => {
+    handleReset();
+    props.Isshow(!props.isshowvalue);
+  };
 
   return (
     <div

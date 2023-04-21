@@ -1,8 +1,10 @@
-import { ConfigProvider, Button, DatePicker } from "antd";
+import { ConfigProvider, Button, DatePicker, message } from "antd";
 import { Radio } from "antd";
 import { RightOutlined, SwapOutlined } from "@ant-design/icons";
 import { createFromIconfontCN, CloseCircleOutlined } from "@ant-design/icons";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { ValueContext } from "@/pages/_app";
+import axios from "axios";
 import CityPicker from "../common/CityPicker";
 import moment from "moment";
 import dayjs from "dayjs";
@@ -14,6 +16,8 @@ const IconFont = createFromIconfontCN({
 import Router from "next/router";
 
 export default function TrainBooker(props) {
+  // 根组件
+  const { isShow, setisShow, token, setToken } = useContext(ValueContext);
   // 控制是否显示返程日期
   const [showReturn, setShowReturn] = useState(false);
   const handleShow = () => {
@@ -34,14 +38,53 @@ export default function TrainBooker(props) {
   };
   // 差异天数
   const [day, setDay] = useState(1);
-  // 获得差异天数;
+  // 获取旅程类型
+  const [Triptype, setTriptype] = useState("单程");
+  // 旅程类型设置
+  const handleTriptype = (e) => {
+    if (e.target.value === 1) {
+      setTriptype("单程");
+    } else if (e.target.value === 2) {
+      setTriptype("往返");
+    } else {
+      setTriptype("中转");
+    }
+  };
+  // 起始日期
+  const [startDate, setStartDate] = useState(moment().format("YYYY-MM-DD"));
+  // 结束日期
+  const [endDate, setEndDate] = useState("无");
+  // 订购操作
+  const BookTrain = () => {
+    const storedToken = token;
+    if (storedToken) {
+      axios
+        .post("http://localhost:3000/api/mock/booktrain", {
+          token: storedToken,
+          id: new Date().getTime(),
+          StartPlace: start[2],
+          EndPlace: end[2],
+          Triptype: Triptype,
+          StartDate: startDate,
+          EndDate: endDate,
+        })
+        .then((res) => {
+          message.success(res.data.message);
+        })
+        .catch((err) => {
+          message.error("操作失败" + err);
+        });
+    } else {
+      message.error("请先登录");
+    }
+  };
 
   return (
     <div>
       <div className="train-pannel">
         {/* 单选框 */}
         <div className="train-radios">
-          <Radio.Group>
+          <Radio.Group onChange={handleTriptype} defaultValue={1}>
             <Radio value={1}>单程</Radio>
             <Radio value={2}>往返</Radio>
             <Radio value={3}>中转</Radio>
@@ -95,6 +138,10 @@ export default function TrainBooker(props) {
                 disabledDate={(current) => {
                   return current < moment().startOf("day");
                 }}
+                defaultValue={dayjs(
+                  moment().format("YYYY-MM-DD"),
+                  "YYYY年MM月DD日"
+                )}
                 placeholder="出发日期"
               ></DatePicker>
               <div className="train-date-right">
@@ -128,7 +175,9 @@ export default function TrainBooker(props) {
             </ConfigProvider>
           </div>
           {/* 订购按钮 */}
-          <Button className="train-book">买票</Button>
+          <Button className="train-book" onClick={BookTrain}>
+            买票
+          </Button>
         </div>
       </div>
     </div>

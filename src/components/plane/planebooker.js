@@ -1,9 +1,11 @@
 import { Tabs, ConfigProvider, Button, DatePicker } from "antd";
 import { Carousel } from "antd";
-import { Radio, Checkbox, Select, Popover, InputNumber } from "antd";
+import { Radio, Checkbox, Select, Popover, InputNumber, message } from "antd";
 import { CheckOutlined, SwapOutlined } from "@ant-design/icons";
 import { createFromIconfontCN } from "@ant-design/icons";
-import { use, useState } from "react";
+import { use, useState, useContext } from "react";
+import { ValueContext } from "@/pages/_app";
+import axios from "axios";
 import CityPicker from "../common/CityPicker";
 import moment from "moment";
 import dayjs from "dayjs";
@@ -16,6 +18,8 @@ const IconFont = createFromIconfontCN({
 });
 
 export default function PlaneBooker(props) {
+  // 根组件
+  const { isShow, setisShow, token, setToken } = useContext(ValueContext);
   // 设置出发和到达城市
   const [start, setStart] = useState([]);
   const [end, setEnd] = useState([]);
@@ -40,13 +44,63 @@ export default function PlaneBooker(props) {
   // 获得差异天数;
   const getDays = (value) => {
     // if (value) console.log(value[0].unix(), value[1].unix());
-    if (value)
+    if (value) {
+      setStartDate(value[0].format("YYYY-MM-DD"));
+      setEndDate(value[1].format("YYYY-MM-DD"));
       setDay(
         moment(value[1].format("YYYY-MM-DD")).diff(
           value[0].format("YYYY-MM-DD"),
           "days"
         )
       );
+    }
+  };
+
+  const [Triptype, setTriptype] = useState("");
+  const handleTriptype = (e) => {
+    if (e.target.value === 1) {
+      setTriptype("单程");
+    } else if (e.target.value === 2) {
+      setTriptype("往返");
+    } else {
+      setTriptype("多程（含缺口程）");
+    }
+  };
+  const [Zhifei, setZhifei] = useState(false);
+  const handleZhifei = (e) => {
+    setZhifei(e.target.checked);
+  };
+  const [startDate, setStartDate] = useState(moment().format("YYYY-MM-DD"));
+  const [endDate, setEndDate] = useState(
+    moment().add(1, "days").format("YYYY-MM-DD")
+  );
+  const BookPlane = async () => {
+    const storedToken = token;
+    if (storedToken) {
+      axios
+        .post("http://localhost:3000/api/mock/bookplane", {
+          token: storedToken,
+          id: new Date().getTime(),
+          StartPlace: start[2],
+          EndPlace: end[2],
+          Triptype: Triptype,
+          Zhifei: Zhifei ? "是" : "否",
+          Type: type,
+          StartDate: startDate,
+          EndDate: endDate,
+          AdultCount: adult,
+          ChildCount: child,
+          EnfantCount: enfant,
+        })
+        .then((res) => {
+          message.success(res.data.message);
+        })
+        .catch((err) => {
+          message.error("操作失败" + err);
+        });
+    } else {
+      message.error("请先登录");
+    }
   };
 
   return (
@@ -91,7 +145,10 @@ export default function PlaneBooker(props) {
                   >
                     {/* 单选框 */}
                     <div>
-                      <Radio.Group className="air-radio">
+                      <Radio.Group
+                        className="air-radio"
+                        onChange={handleTriptype}
+                      >
                         <Radio value={1}>单程</Radio>
                         <Radio value={2}>往返</Radio>
                         <Radio value={3}>多程（含缺口程）</Radio>
@@ -100,7 +157,7 @@ export default function PlaneBooker(props) {
 
                     {/* 下拉菜单 */}
                     <div>
-                      <Checkbox>仅看直飞</Checkbox>
+                      <Checkbox onChange={handleZhifei}>仅看直飞</Checkbox>
                       <Select
                         bordered={false}
                         defaultValue="经济/超经舱"
@@ -339,7 +396,9 @@ export default function PlaneBooker(props) {
                       </Popover>
                     </div>
                   </div>
-                  <Button className="air-book">订购</Button>
+                  <Button className="air-book" onClick={BookPlane}>
+                    订购
+                  </Button>
                 </div>
               ),
             },

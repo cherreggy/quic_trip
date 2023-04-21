@@ -89,7 +89,15 @@ export default function SiderNav({
   }
 
   const onOpenChange = (keys) => {
-    setOpenKeys(keys);
+    if (!openKeys) setOpenKeys(keys);
+    else {
+      const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
+      if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
+        setOpenKeys(keys);
+      } else {
+        setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
+      }
+    }
   };
   // 设置折叠值，父组件传入的控制器
   const handleFold = () => {

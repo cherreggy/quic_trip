@@ -3,6 +3,7 @@ import { message, Button, Checkbox, Form, Input, Space } from "antd";
 import { QRCode } from "antd";
 import { useEffect, useState, useContext } from "react";
 import { ValueContext } from "@/pages/_app";
+import axios from "axios";
 
 function UserNameAndPassword(props) {
   // 根组件状态
@@ -12,47 +13,43 @@ function UserNameAndPassword(props) {
   // 是否记住我
   const [rememberMe, setRememberMe] = useState(false);
   // 点击登录按钮逻辑
-  const handleLogin = () => {
-    // 先验证表单
-    form
-      .validateFields()
-      .then((values) => {
-        // 判断用户名是否存在
-        let exist =
-          values.username === "111" ||
-          values.username === "我的名字很长长长长长长长长";
-        if (exist) {
-          // 判断用户名密码是否匹配
-          let consist =
-            (values.username === "111" && values.password === "111") ||
-            (values.username === "我的名字很长长长长长长长长" &&
-              values.password === "111");
-          // console.log(values);
-          if (consist) {
-            // 登陆成功
-            // 判断是否记住用户名，写入本地，下次自动登录
-            if (rememberMe) {
-              // 写入本地存储
-              localStorage.setItem("token", values.username);
-              // 设置临时token
-              setToken(values.username);
-              // 关闭弹窗
-              props.setIsModalOpen(false);
-            } else {
-              // 设置临时token
-              setToken(values.username);
-              // 关闭弹窗
-              props.setIsModalOpen(false);
-            }
+  const handleLogin = async () => {
+    axios
+      .post("http://localhost:3000/api/mock/login", {
+        username: form.getFieldValue("username"),
+        password: form.getFieldValue("password"),
+        rememberMe: rememberMe,
+      })
+      .then((res) => {
+        if (res.data.status === 200) {
+          console.log(res.data.data);
+          message.success("登录成功");
+          // 判断是否记住用户名，写入本地，下次自动登录
+          if (rememberMe) {
+            // 写入本地存储
+            localStorage.setItem("token", res.data.data.username);
+            // 设置临时token
+            setToken(res.data.data.username);
+            setRememberMe(false);
+            // 关闭弹窗
+            props.setIsModalOpen(false);
           } else {
-            message.error("用户名密码不匹配！");
+            // 设置临时token
+            setToken(res.data.data.username);
+            // 关闭弹窗
+            props.setIsModalOpen(false);
           }
-        } else {
-          message.error("用户名不存在！");
+          form.resetFields();
+        } else if (res.data.status === 203) {
+          message.error("用户不存在");
+          form.resetFields();
+        } else if (res.data.status === 202) {
+          message.error("密码错误");
+          form.resetFields();
         }
       })
       .catch((err) => {
-        message.error("请正确填写用户名密码！");
+        message.error("操作失败" + err);
         console.log(err);
       });
   };
@@ -121,11 +118,13 @@ function UserNameAndPassword(props) {
   );
 }
 
-function Phone() {
+function Phone(props) {
+  // 根组件状态
+  const { isShow, setisShow, token, setToken } = useContext(ValueContext);
   // 存放随机验证码
   const [valiNum, setValiNum] = useState("");
   // 标记获取验证码功能是否可用
-  const [countdown, setCountdown] = useState(10);
+  const [countdown, setCountdown] = useState(5);
   const [disabled, setDisabled] = useState(false);
   // 保存计时器的引用，以便能够即使销毁，防止内存泄漏
   const [timer, setTimer] = useState(null);
@@ -161,7 +160,7 @@ function Phone() {
         showMessage();
         // 设置按钮为disabled
         setDisabled(true);
-        setCountdown(10);
+        setCountdown(5);
         // 每秒减少倒计时的值
         const t = setInterval(() => {
           setCountdown((old) => {
@@ -185,7 +184,41 @@ function Phone() {
       });
   };
   // 点击手机验证码登录逻辑
-  const handleLogin = () => {};
+  const handleLogin = () => {
+    if (form.getFieldValue("varifycode") == valiNum) {
+      axios
+        .post("http://localhost:3000/api/mock/login", {
+          username: "wzb",
+          password: "111",
+          rememberMe: true,
+        })
+        .then((res) => {
+          if (res.data.status === 200) {
+            console.log(res.data.data);
+            message.success("登录成功");
+            // 写入本地存储
+            localStorage.setItem("token", res.data.data.username);
+            // 设置临时token
+            setToken(res.data.data.username);
+            // 关闭弹窗
+            props.setIsModalOpen(false);
+            form.resetFields();
+          } else if (res.data.status === 203) {
+            message.error("用户不存在");
+            form.resetFields();
+          } else if (res.data.status === 202) {
+            message.error("密码错误");
+            form.resetFields();
+          }
+        })
+        .catch((err) => {
+          message.error("操作失败" + err);
+          console.log(err);
+        });
+    } else {
+      message.error("您输入的验证码错误！");
+    }
+  };
   // 手机号登录样式
   return (
     <div>

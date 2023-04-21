@@ -3,11 +3,12 @@ import {
   Space,
   DatePicker,
   ConfigProvider,
-  Cascader,
+  Select,
   Button,
   Popover,
   InputNumber,
   Input,
+  message,
 } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import CityPicker from "../common/CityPicker";
@@ -15,10 +16,17 @@ import locale from "antd/locale/zh_CN";
 import dayjs from "dayjs";
 import "dayjs/locale/zh-cn";
 import moment from "moment";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { ValueContext } from "@/pages/_app";
+import axios from "axios";
 const { RangePicker } = DatePicker;
 
 export default function Booker() {
+  // 根组件
+  const { isShow, setisShow, token, setToken } = useContext(ValueContext);
+  // 表单
+  const [form1] = Form.useForm();
+  const [form2] = Form.useForm();
   // 存放儿童数
   const [child, setChild] = useState(0);
   // 存放成人数
@@ -27,6 +35,17 @@ export default function Booker() {
   const [roomNum, setRoomNum] = useState(1);
   // 存放几晚
   const [night, setNight] = useState(1);
+  // 星级选择
+  const [level, setLevel] = useState("");
+  // 入住时间
+  const [checkinTime, setcheckinTime] = useState(moment().format("YYYY-MM-DD"));
+  // 离开时间
+  const [checkoutTime, setcheckoutTime] = useState(
+    moment().add(1, "days").format("YYYY-MM-DD")
+  );
+  // 备注
+  const [description, setDescription] = useState("");
+
   // 日期渲染函数
   const rendCells = () => {
     return "?";
@@ -34,13 +53,16 @@ export default function Booker() {
   // 获得住宿天数
   const getNights = (value) => {
     // if (value) console.log(value[0].unix(), value[1].unix());
-    if (value)
+    if (value) {
+      setcheckinTime(value[0].format("YYYY-MM-DD"));
+      setcheckoutTime(value[1].format("YYYY-MM-DD"));
       setNight(
         moment(value[1].format("YYYY-MM-DD")).diff(
           value[0].format("YYYY-MM-DD"),
           "days"
         )
       );
+    }
   };
   // 酒店级别信息
   const items = [
@@ -63,6 +85,35 @@ export default function Booker() {
   ];
   // 地点的选择
   const [position, setPosition] = useState("");
+  // 订购酒店操作
+  const BookHotel = async (e) => {
+    const storedToken = token;
+    if (storedToken) {
+      axios
+        .post("http://localhost:3000/api/mock/bookhotel", {
+          token: storedToken,
+          id: new Date().getTime(),
+          destination: position[2],
+          HotelLevel: level,
+          checkinDate: checkinTime,
+          checkoutDate: checkoutTime,
+          RoomCount: roomNum,
+          AdultCount: adult,
+          ChildCount: child,
+          description: description,
+        })
+        .then((res) => {
+          message.success(res.data.message);
+          form1.resetFields();
+          form2.resetFields();
+        })
+        .catch((err) => {
+          message.error("操作失败" + err);
+        });
+    } else {
+      message.error("请先登录");
+    }
+  };
   return (
     <div>
       <div className="inn-box">
@@ -70,7 +121,7 @@ export default function Booker() {
         <h5>Book Rooms</h5>
         {/* 下面的表单项 */}
         <div className="inn-box-forms">
-          <Form style={{ height: "5rem" }}>
+          <Form style={{ height: "5rem" }} form={form1}>
             <Space.Compact>
               {/* 城市选择器 */}
               <Form.Item
@@ -113,13 +164,12 @@ export default function Booker() {
             </Space.Compact>
           </Form>
 
-          <Form style={{ display: "flex", marginTop: "1.5rem" }}>
+          <Form style={{ display: "flex", marginTop: "1.5rem" }} form={form2}>
             <Space.Compact
               className="dark-use"
               style={{
                 flex: "8",
                 backgroundColor: "white",
-                marginRight: "1rem",
                 borderRadius: "0.4rem",
                 boxSizing: "border-box",
                 border: "1px solid #ccc",
@@ -216,31 +266,40 @@ export default function Booker() {
                 >
                   酒店级别
                 </p>
-                <Cascader
-                  options={items}
-                  multiple
-                  maxTagCount="responsive"
+                <Select
+                  onChange={(e) => {
+                    setLevel(e);
+                  }}
+                  style={{
+                    width: "10rem",
+                    marginTop: "0.6rem",
+                  }}
                   bordered={false}
-                />
+                  options={items}
+                  allowClear={true}
+                ></Select>
               </div>
               {/* 关键词 */}
               <div style={{ padding: "0.5rem 0 0 1rem" }}>
                 <p className="inn-title">备注（选填）</p>
                 <Input
-                  style={{ height: "3rem", borderRadius: "0" }}
+                  style={{ width: "20rem", height: "3rem", borderRadius: "0" }}
                   bordered={false}
                   placeholder="机场/火车站/酒店名称"
+                  onChange={(e) => setDescription(e.target.value)}
                 ></Input>
               </div>
+              {/* 预定按钮 */}
+              <Button
+                type="primary"
+                size="large"
+                style={{ flex: "2", fontSize: "1.5rem", height: "5rem" }}
+                className="inn-search"
+                onClick={BookHotel}
+              >
+                预订
+              </Button>
             </Space.Compact>
-            <Button
-              type="primary"
-              size="large"
-              style={{ flex: "2", fontSize: "1.5rem", height: "5rem" }}
-              className="inn-search"
-            >
-              预订
-            </Button>
           </Form>
         </div>
       </div>
