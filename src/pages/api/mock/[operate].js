@@ -30,7 +30,7 @@ export default function handler(req, res) {
       });
     }
   } else if (op.operate == "login") {
-    var users = fs.readdirSync("./");
+    var users = fs.readdirSync("./package");
     users = users.map((item) => item.split(".")[0]);
     if (users.indexOf(req.body.username) === -1) {
       res.send({
