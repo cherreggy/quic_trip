@@ -40,7 +40,7 @@ export default function BoatBooker(props) {
     const storedToken = token;
     if (storedToken) {
       axios
-        .post("http://localhost:3000/api/mock/bookbusorboat", {
+        .post("api/mock/bookbusorboat", {
           token: storedToken,
           id: new Date().getTime(),
           StartPlace: StartCity[2],

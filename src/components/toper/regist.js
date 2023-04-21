@@ -11,7 +11,7 @@ export default function Regist(props) {
   const [RegisterForm] = Form.useForm();
   const handelRegister = async () => {
     axios
-      .post("http://localhost:3000/api/mock/register", {
+      .post("api/mock/register", {
         id: new Date().getTime(),
         username: RegisterForm.getFieldValue("用户名"),
         gender: RegisterForm.getFieldValue("性别"),

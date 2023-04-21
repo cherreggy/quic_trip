@@ -78,7 +78,7 @@ export default function PlaneBooker(props) {
     const storedToken = token;
     if (storedToken) {
       axios
-        .post("http://localhost:3000/api/mock/bookplane", {
+        .post("api/mock/bookplane", {
           token: storedToken,
           id: new Date().getTime(),
           StartPlace: start[2],

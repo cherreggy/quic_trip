@@ -59,7 +59,7 @@ export default function TrainBooker(props) {
     const storedToken = token;
     if (storedToken) {
       axios
-        .post("http://localhost:3000/api/mock/booktrain", {
+        .post("api/mock/booktrain", {
           token: storedToken,
           id: new Date().getTime(),
           StartPlace: start[2],

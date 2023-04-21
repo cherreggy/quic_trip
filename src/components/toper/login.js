@@ -15,7 +15,7 @@ function UserNameAndPassword(props) {
   // 点击登录按钮逻辑
   const handleLogin = async () => {
     axios
-      .post("http://localhost:3000/api/mock/login", {
+      .post("api/mock/login", {
         username: form.getFieldValue("username"),
         password: form.getFieldValue("password"),
         rememberMe: rememberMe,
@@ -187,7 +187,7 @@ function Phone(props) {
   const handleLogin = () => {
     if (form.getFieldValue("varifycode") == valiNum) {
       axios
-        .post("http://localhost:3000/api/mock/login", {
+        .post("api/mock/login", {
           username: "wzb",
           password: "111",
           rememberMe: true,

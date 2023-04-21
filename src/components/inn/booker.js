@@ -90,7 +90,7 @@ export default function Booker() {
     const storedToken = token;
     if (storedToken) {
       axios
-        .post("http://localhost:3000/api/mock/bookhotel", {
+        .post("api/mock/bookhotel", {
           token: storedToken,
           id: new Date().getTime(),
           destination: position[2],

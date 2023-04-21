@@ -77,7 +77,8 @@ export default function Toper(props) {
 
   // 注册按钮点击事件
   const handleRegist = () => {
-    setRegistOpen(true);
+    if (!token) setRegistOpen(true);
+    else message.error("请退出登录！");
   };
   // 注册窗口确认事件
   const registOk = () => {
