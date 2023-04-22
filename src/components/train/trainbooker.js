@@ -140,6 +140,7 @@ export default function TrainBooker(props) {
           <div className="train-dates">
             <ConfigProvider locale={locale}>
               <DatePicker
+                allowClear={false}
                 className="train-date-left"
                 disabledDate={(current) => {
                   return current < moment().startOf("day");
@@ -150,7 +151,7 @@ export default function TrainBooker(props) {
                 )}
                 placeholder="出发日期"
                 onChange={(e) => {
-                  setStartDate(e.format("YYYY-MM-DD"));
+                  if (e) setStartDate(e.format("YYYY-MM-DD"));
                 }}
                 value={dayjs(startDate, "YYYY年MM月DD日")}
               ></DatePicker>
@@ -158,6 +159,7 @@ export default function TrainBooker(props) {
                 {showReturn ? (
                   <div className="train-show-pannel">
                     <DatePicker
+                      allowClear={false}
                       disabledDate={(current) => {
                         return current < moment().startOf("day");
                       }}

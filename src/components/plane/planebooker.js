@@ -267,8 +267,8 @@ export default function PlaneBooker(props) {
                     {/* 日期选择器组合 */}
                     <ConfigProvider locale={locale}>
                       <RangePicker
+                        allowClear={false}
                         className="air-range"
-                        allowClear={true}
                         defaultValue={[
                           dayjs(
                             moment().format("YYYY-MM-DD"),

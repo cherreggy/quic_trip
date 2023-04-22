@@ -131,6 +131,7 @@ export default function BoatBooker(props) {
                   >
                     <ConfigProvider locale={locale}>
                       <DatePicker
+                        allowClear={false}
                         disabledDate={(current) => {
                           return current < moment().startOf("day");
                         }}
@@ -201,6 +202,7 @@ export default function BoatBooker(props) {
                   >
                     <ConfigProvider locale={locale}>
                       <DatePicker
+                        allowClear={false}
                         onChange={(val) =>
                           setStartDate(val.format("YYYY-MM-DD"))
                         }
