@@ -56,7 +56,7 @@ export default function PlaneBooker(props) {
     }
   };
 
-  const [Triptype, setTriptype] = useState("");
+  const [Triptype, setTriptype] = useState(1);
   const handleTriptype = (e) => {
     if (e.target.value === 1) {
       setTriptype("单程");
@@ -94,6 +94,17 @@ export default function PlaneBooker(props) {
         })
         .then((res) => {
           message.success(res.data.message);
+          // 初始化默认值
+          setTriptype(1);
+          setStart([]);
+          setEnd([]);
+          setStartDate(moment().format("YYYY-MM-DD"));
+          setEndDate(moment().add(1, "days").format("YYYY-MM-DD"));
+          setAdult(1);
+          setChild(0);
+          setEnfant(0);
+          setZhifei(false);
+          setType("经济/超经舱");
         })
         .catch((err) => {
           message.error("操作失败" + err);
@@ -148,6 +159,8 @@ export default function PlaneBooker(props) {
                       <Radio.Group
                         className="air-radio"
                         onChange={handleTriptype}
+                        defaultValue={1}
+                        value={Triptype}
                       >
                         <Radio value={1}>单程</Radio>
                         <Radio value={2}>往返</Radio>
@@ -157,7 +170,9 @@ export default function PlaneBooker(props) {
 
                     {/* 下拉菜单 */}
                     <div>
-                      <Checkbox onChange={handleZhifei}>仅看直飞</Checkbox>
+                      <Checkbox onChange={handleZhifei} checked={Zhifei}>
+                        仅看直飞
+                      </Checkbox>
                       <Select
                         bordered={false}
                         defaultValue="经济/超经舱"
@@ -219,6 +234,7 @@ export default function PlaneBooker(props) {
                             ),
                           },
                         ]}
+                        value={type}
                       />
                     </div>
                   </div>
@@ -271,6 +287,10 @@ export default function PlaneBooker(props) {
                         disabledDate={(current) => {
                           return current < moment().startOf("day");
                         }}
+                        value={[
+                          dayjs(startDate, "YYYY年MM月DD日"),
+                          dayjs(endDate, "YYYY年MM月DD日"),
+                        ]}
                         suffixIcon={null}
                       ></RangePicker>
                     </ConfigProvider>

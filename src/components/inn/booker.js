@@ -106,6 +106,13 @@ export default function Booker() {
           message.success(res.data.message);
           form1.resetFields();
           form2.resetFields();
+          // 恢复默认值
+          setLevel("");
+          setDescription("");
+          setRoomNum(1);
+          setAdult(1);
+          setChild(0);
+          setNight(1);
         })
         .catch((err) => {
           message.error("操作失败" + err);
@@ -270,6 +277,7 @@ export default function Booker() {
                   onChange={(e) => {
                     setLevel(e);
                   }}
+                  value={level}
                   style={{
                     width: "10rem",
                     marginTop: "0.6rem",
@@ -287,6 +295,7 @@ export default function Booker() {
                   bordered={false}
                   placeholder="机场/火车站/酒店名称"
                   onChange={(e) => setDescription(e.target.value)}
+                  value={description}
                 ></Input>
               </div>
               {/* 预定按钮 */}

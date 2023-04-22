@@ -7,6 +7,7 @@ import { Space } from "antd";
 import CityPicker from "@/components/common/CityPicker";
 import locale from "antd/locale/zh_CN";
 import "dayjs/locale/zh-cn";
+import dayjs from "dayjs";
 import moment from "moment";
 import { useState, useContext } from "react";
 import { ValueContext } from "@/pages/_app";
@@ -21,8 +22,6 @@ export default function BoatBooker(props) {
   // 出发和结束城市
   const [StartCity, setStartCity] = useState([]);
   const [EndCity, setEndCity] = useState([]);
-  const [busCity, setBusCity] = useState([]);
-  const [boatCity, setBoatCity] = useState([]);
   // 交换上下两个值
   const handelExchange = () => {
     // console.log(busCity, boatCity);
@@ -31,7 +30,7 @@ export default function BoatBooker(props) {
     setEndCity([...tmp]);
   };
   // 设置开始时间
-  const [startDate, setStartDate] = useState("");
+  const [startDate, setStartDate] = useState(moment().format("YYYY-MM-DD"));
   // 两种票型切换
   const [BusOrBoat, setBusOrBoat] = useState("汽车票订购");
   // 汽车票订购
@@ -50,6 +49,10 @@ export default function BoatBooker(props) {
         })
         .then((res) => {
           message.success(res.data.message);
+          // 恢复为默认值
+          setStartDate(moment().format("YYYY-MM-DD"));
+          setStartCity([]);
+          setEndCity([]);
         })
         .catch((err) => {
           message.error("操作失败" + err);
@@ -134,6 +137,7 @@ export default function BoatBooker(props) {
                         onChange={(val) =>
                           setStartDate(val.format("YYYY-MM-DD"))
                         }
+                        value={dayjs(startDate, "YYYY年MM月DD日")}
                       />
                     </ConfigProvider>
                   </Form.Item>
@@ -203,6 +207,7 @@ export default function BoatBooker(props) {
                         disabledDate={(current) => {
                           return current < moment().startOf("day");
                         }}
+                        value={dayjs(startDate, "YYYY年MM月DD日")}
                       />
                     </ConfigProvider>
                   </Form.Item>

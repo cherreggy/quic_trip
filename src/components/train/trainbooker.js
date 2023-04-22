@@ -42,18 +42,13 @@ export default function TrainBooker(props) {
   const [Triptype, setTriptype] = useState("单程");
   // 旅程类型设置
   const handleTriptype = (e) => {
-    if (e.target.value === 1) {
-      setTriptype("单程");
-    } else if (e.target.value === 2) {
-      setTriptype("往返");
-    } else {
-      setTriptype("中转");
-    }
+    setTriptype(e.target.value);
+    // console.log(e.target.value);
   };
   // 起始日期
   const [startDate, setStartDate] = useState(moment().format("YYYY-MM-DD"));
   // 结束日期
-  const [endDate, setEndDate] = useState("无");
+  const [endDate, setEndDate] = useState(moment().format("YYYY-MM-DD"));
   // 订购操作
   const BookTrain = () => {
     const storedToken = token;
@@ -66,10 +61,17 @@ export default function TrainBooker(props) {
           EndPlace: end[2],
           Triptype: Triptype,
           StartDate: startDate,
-          EndDate: endDate,
+          EndDate: showReturn ? endDate : "无",
         })
         .then((res) => {
           message.success(res.data.message);
+          // 重设默认值
+          setStart([]);
+          setEnd([]);
+          setStartDate(moment().format("YYYY-MM-DD"));
+          setEndDate(moment().format("YYYY-MM-DD"));
+          setShowReturn(false);
+          setTriptype("单程");
         })
         .catch((err) => {
           message.error("操作失败" + err);
@@ -84,10 +86,14 @@ export default function TrainBooker(props) {
       <div className="train-pannel">
         {/* 单选框 */}
         <div className="train-radios">
-          <Radio.Group onChange={handleTriptype} defaultValue={1}>
-            <Radio value={1}>单程</Radio>
-            <Radio value={2}>往返</Radio>
-            <Radio value={3}>中转</Radio>
+          <Radio.Group
+            onChange={handleTriptype}
+            defaultValue={1}
+            value={Triptype}
+          >
+            <Radio value={"单程"}>单程</Radio>
+            <Radio value={"往返"}>往返</Radio>
+            <Radio value={"中转"}>中转</Radio>
           </Radio.Group>
 
           {/* 右边链接 */}
@@ -146,6 +152,7 @@ export default function TrainBooker(props) {
                 onChange={(e) => {
                   setStartDate(e.format("YYYY-MM-DD"));
                 }}
+                value={dayjs(startDate, "YYYY年MM月DD日")}
               ></DatePicker>
               <div className="train-date-right">
                 {showReturn ? (
@@ -158,6 +165,7 @@ export default function TrainBooker(props) {
                       onChange={(e) => {
                         setEndDate(e.format("YYYY-MM-DD"));
                       }}
+                      value={dayjs(endDate, "YYYY年MM月DD日")}
                     ></DatePicker>
                     <Button
                       className="train-hide"
