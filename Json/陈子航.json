@@ -1,1 +1,62 @@
-{"id":1682092698847,"username":"陈子航","gender":"男","email_address":"13609997150@qq.com","trip_declaration":"携程给我offer","password":"111","trainbook":[{"id":1682092956215,"username":"陈子航","userid":1682092698847,"StartPlace":"上海","EndPlace":"威海","Triptype":"单程","StartDate":"2023-04-22","EndDate":"2023-04-23"}],"planebook":[{"id":1682093040418,"username":"陈子航","userid":1682092698847,"StartPlace":"上海","EndPlace":"迈阿密","Triptype":"单程","Zhifei":"否","Type":"经济/超经舱","StartDate":"2023-04-22","EndDate":"2023-04-29","AdultCount":2,"ChildCount":0,"EnfantCount":0},{"id":1682093157477,"username":"陈子航","userid":1682092698847,"StartPlace":"北京","EndPlace":"阿克苏","Triptype":"单程","Zhifei":"否","Type":"经济/超经舱","StartDate":"2023-04-22","EndDate":"2023-04-23","AdultCount":1,"ChildCount":0,"EnfantCount":0}],"busbook":[{"id":1682093179653,"username":"陈子航","userid":1682092698847,"StartPlace":"北京","EndPlace":"果洛","StartDate":"2023-04-22"}]}
+{
+  "id": 1682092698847,
+  "username": "陈子航",
+  "gender": "男",
+  "email_address": "13609997150@qq.com",
+  "trip_declaration": "OK",
+  "password": "111",
+  "trainbook": [
+    {
+      "id": 1682092956215,
+      "username": "陈子航",
+      "userid": 1682092698847,
+      "StartPlace": "上海",
+      "EndPlace": "威海",
+      "Triptype": "单程",
+      "StartDate": "2023-04-22",
+      "EndDate": "2023-04-23"
+    }
+  ],
+  "planebook": [
+    {
+      "id": 1682093040418,
+      "username": "陈子航",
+      "userid": 1682092698847,
+      "StartPlace": "上海",
+      "EndPlace": "迈阿密",
+      "Triptype": "单程",
+      "Zhifei": "否",
+      "Type": "经济/超经舱",
+      "StartDate": "2023-04-22",
+      "EndDate": "2023-04-29",
+      "AdultCount": 2,
+      "ChildCount": 0,
+      "EnfantCount": 0
+    },
+    {
+      "id": 1682093157477,
+      "username": "陈子航",
+      "userid": 1682092698847,
+      "StartPlace": "北京",
+      "EndPlace": "阿克苏",
+      "Triptype": "单程",
+      "Zhifei": "否",
+      "Type": "经济/超经舱",
+      "StartDate": "2023-04-22",
+      "EndDate": "2023-04-23",
+      "AdultCount": 1,
+      "ChildCount": 0,
+      "EnfantCount": 0
+    }
+  ],
+  "busbook": [
+    {
+      "id": 1682093179653,
+      "username": "陈子航",
+      "userid": 1682092698847,
+      "StartPlace": "北京",
+      "EndPlace": "果洛",
+      "StartDate": "2023-04-22"
+    }
+  ]
+}

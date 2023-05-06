@@ -75,7 +75,12 @@ export default function Train() {
   return dark ? (
     <>
       {loading && (
-        <Progress percent={progress} showInfo={false} strokeColor="#9f1bfa" />
+        <Progress
+          percent={progress}
+          showInfo={false}
+          strokeColor="#9f1bfa"
+          style={{ position: "sticky", top: "0" }}
+        />
       )}
       <ConfigProvider
         theme={{
@@ -96,7 +101,12 @@ export default function Train() {
   ) : (
     <>
       {loading && (
-        <Progress percent={progress} showInfo={false} strokeColor="#9f1bfa" />
+        <Progress
+          percent={progress}
+          showInfo={false}
+          strokeColor="#9f1bfa"
+          style={{ position: "sticky", top: "0" }}
+        />
       )}
       <MainPage
         content={<TrainBody dark={dark}></TrainBody>}

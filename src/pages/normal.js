@@ -65,6 +65,7 @@ export default function Normal() {
     router.events.on("routeChangeError", handleComplete);
 
     return () => {
+      // 卸载事件
       router.events.off("routeChangeStart", handleStart);
       router.events.off("routeChangeComplete", handleComplete);
       router.events.off("routeChangeError", handleComplete);
@@ -84,7 +85,12 @@ export default function Normal() {
   return dark ? (
     <>
       {loading && (
-        <Progress percent={progress} showInfo={false} strokeColor="#9f1bfa" />
+        <Progress
+          percent={progress}
+          showInfo={false}
+          strokeColor="#9f1bfa"
+          style={{ position: "sticky", top: "0" }}
+        />
       )}
 
       <ConfigProvider
@@ -106,7 +112,12 @@ export default function Normal() {
   ) : (
     <>
       {loading && (
-        <Progress percent={progress} showInfo={false} strokeColor="#9f1bfa" />
+        <Progress
+          percent={progress}
+          showInfo={false}
+          strokeColor="#9f1bfa"
+          style={{ position: "sticky", top: "0" }}
+        />
       )}
       <MainPage
         content={<NormalBody dark={dark}></NormalBody>}

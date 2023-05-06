@@ -59,11 +59,11 @@ const bigBanner = {
           price: "394.0",
           img: "https://dimg04.c-ctrip.com/images/200u1d000001ehnvh5012_D_200_200.jpg",
         },
-        // {
-        //   name: "湖州行政中心亚朵酒店",
-        //   price: "366.0",
-        //   img: "https://dimg04.c-ctrip.com/images/02049120008h6w49z9401_D_200_200.jpg",
-        // },
+        {
+          name: "湖州行政中心亚朵酒店",
+          price: "366.0",
+          img: "https://dimg04.c-ctrip.com/images/02049120008h6w49z9401_D_200_200.jpg",
+        },
       ],
     },
     {

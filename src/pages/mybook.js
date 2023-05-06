@@ -31,7 +31,7 @@ function MyBookBody(props) {
     const storedToken = token;
     if (storedToken) {
       axios
-        .post("http://localhost:3000/api/mock/bookerinfo", {
+        .post("api/mock/bookerinfo", {
           token: storedToken,
         })
         .then((res) => {
@@ -53,7 +53,7 @@ function MyBookBody(props) {
         });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  });
 
   const handledelete = (id) => {
     setHotelbook(hotelbook.filter((hb) => hb.id !== id));
@@ -69,7 +69,7 @@ function MyBookBody(props) {
     const storedToken = token;
     if (storedToken) {
       axios
-        .post("http://localhost:3000/api/mock/deletebooker", {
+        .post("api/mock/deletebooker", {
           token: storedToken,
           hotelbook: delethotel,
           planebook: deletplane,
@@ -354,7 +354,12 @@ export default function MyBook() {
   return dark ? (
     <>
       {loading && (
-        <Progress percent={progress} showInfo={false} strokeColor="#9f1bfa" />
+        <Progress
+          percent={progress}
+          showInfo={false}
+          strokeColor="#9f1bfa"
+          style={{ position: "sticky", top: "0" }}
+        />
       )}
       <ConfigProvider
         theme={{
@@ -374,7 +379,12 @@ export default function MyBook() {
   ) : (
     <>
       {loading && (
-        <Progress percent={progress} showInfo={false} strokeColor="#9f1bfa" />
+        <Progress
+          percent={progress}
+          showInfo={false}
+          strokeColor="#9f1bfa"
+          style={{ position: "sticky", top: "0" }}
+        />
       )}
       <MainPage
         setDark={setDark}

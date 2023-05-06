@@ -4,8 +4,9 @@ import React from "react";
 import dynamic from "next/dynamic";
 import { Bubble, useMessages } from "@chatui/core";
 import { Image } from "@chatui/core";
-import { Button } from "antd";
+import { Button, message } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
+import axios from "axios";
 
 const Chat = dynamic(() => import("@chatui/core"), { ssr: false });
 
@@ -94,16 +95,25 @@ export default function ChatPage(props) {
             },
           });
         } else {
-          appendMsg({
-            type: "text",
-            content: {
-              text: "都什么年代，还在用人工客服~问问chatGPT吧",
-            },
-            user: {
-              avatar:
-                "https://img2.baidu.com/it/u=3766147249,479113639&fm=253&fmt=auto&app=138&f=PNG?w=500&h=500",
-            },
-          });
+          if (val) {
+            axios
+              .get(`http://liulongbin.top:3006/api/robot?spoken=${val}`)
+              .then((data) => {
+                appendMsg({
+                  type: "text",
+                  content: {
+                    text: data.data.data.info.text,
+                  },
+                  user: {
+                    avatar:
+                      "https://img2.baidu.com/it/u=3766147249,479113639&fm=253&fmt=auto&app=138&f=PNG?w=500&h=500",
+                  },
+                });
+              })
+              .catch((error) => {
+                message.error("网络出现问题！");
+              });
+          }
         }
       }, 1000);
     }

@@ -63,7 +63,12 @@ export default function Plane() {
   return dark ? (
     <>
       {loading && (
-        <Progress percent={progress} showInfo={false} strokeColor="#9f1bfa" />
+        <Progress
+          percent={progress}
+          showInfo={false}
+          strokeColor="#9f1bfa"
+          style={{ position: "sticky", top: "0" }}
+        />
       )}
       <ConfigProvider
         theme={{
@@ -84,7 +89,12 @@ export default function Plane() {
   ) : (
     <>
       {loading && (
-        <Progress percent={progress} showInfo={false} strokeColor="#9f1bfa" />
+        <Progress
+          percent={progress}
+          showInfo={false}
+          strokeColor="#9f1bfa"
+          style={{ position: "sticky", top: "0" }}
+        />
       )}
       <MainPage
         content={<PlaneBody dark={dark}></PlaneBody>}

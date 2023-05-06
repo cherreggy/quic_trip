@@ -2,13 +2,17 @@
 .ant-menu-vertical > .ant-menu-item,
 .ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title,
 .ant-menu-vertical > .ant-menu-submenu > .ant-menu-submenu-title {
-  height: 6vh !important;
-  line-height: 6vh !important;
-  border-radius: 10vh !important;
+  height: 3.5rem !important;
+  line-height: 3.5rem !important;
+  border-radius: 6rem !important;
 }
 
 .ant-layout .ant-layout-sider-children {
-  padding: 1vh !important;
+  padding: 0.5rem !important;
+}
+
+.ant-layout-sider {
+  top: 0 !important;
 }
 
 .ant-menu-light.ant-menu-root.ant-menu-inline,
@@ -26,13 +30,13 @@
 .ant-menu .ant-menu-item,
 .ant-menu .ant-menu-submenu,
 .ant-menu .ant-menu-submenu-title {
-  border-radius: 10vh !important;
+  border-radius: 5rem !important;
 }
 
 .ant-menu-submenu-arrow::before {
   color: #7300c0 !important;
   font-weight: 1000 !important;
-  font-size: 3vh !important;
+  font-size: 1.5rem !important;
 }
 
 .ant-menu-submenu-arrow::after {
@@ -42,8 +46,8 @@
 
 .ant-menu .ant-menu-submenu-arrow::before,
 .ant-menu .ant-menu-submenu-arrow::after {
-  width: 10px !important;
-  height: 4.5px !important;
+  width: 0.3rem !important;
+  height: 0.5rem !important;
 }
 
 .ant-menu-light .ant-menu-submenu-selected > .ant-menu-submenu-title,
@@ -58,7 +62,7 @@
 .ant-menu .ant-menu-item .ant-menu-item-icon svg,
 .ant-menu .ant-menu-submenu-title .ant-menu-item-icon svg {
   background-color: #fff !important;
-  border-radius: 1vh !important;
+  border-radius: 0.5rem !important;
 }
 
 .ant-layout .ant-layout-sider {
@@ -66,18 +70,18 @@
 }
 
 .ant-menu-submenu-title {
-  font-size: 1.8vh !important;
+  font-size: 1rem !important;
 }
 
 /* 导航栏下部收缩标志的样式 */
 .ant-layout .ant-layout-sider-trigger {
   background-color: #ccc !important;
-  border-right: solid 1px #eee !important;
+  border-right: solid 0.5rem #eee !important;
 }
 
 .ant-menu-light.ant-menu-inline .ant-menu-item,
 .ant-menu-light > .ant-menu.ant-menu-inline .ant-menu-item {
-  height: 4vh !important;
+  height: 2rem !important;
 }
 
 .ant-layout .ant-layout-sider-children .ant-menu.ant-menu-inline-collapsed {
@@ -86,8 +90,8 @@
 }
 
 .folder {
-  margin: 2vh 0 !important;
-  font-size: 2vh !important;
+  margin: 1rem 0 !important;
+  font-size: 1rem !important;
   cursor: pointer !important;
 }
 
@@ -96,13 +100,19 @@
   .ant-menu-vertical
   > .ant-menu-submenu
   > .ant-menu-submenu-title {
-  line-height: 4vh !important;
-  height: 4vh !important;
+  line-height: 2rem !important;
+  height: 2rem !important;
 }
 
 .ant-layout .ant-layout-sider {
   position: fixed !important;
   height: 100vh !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+.ant-menu-inline-collapsed > .ant-menu-submenu > .ant-menu-submenu-title {
+  width: 8rem !important;
 }
 
 .ant-menu-submenu-inline:nth-last-child(2) {
@@ -117,4 +127,8 @@
   position: relative;
   top: -0.5rem;
   background-color: #ccc;
+}
+
+.ant-menu-submenu-popup {
+  display: none !important;
 }

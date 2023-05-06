@@ -19,6 +19,8 @@ import Wuzhangai from "../components/wuzhangai";
 export const ValueContext = createContext();
 
 export default function App({ Component, pageProps }) {
+  const [pin, setPin] = useState(false); // 图钉状态
+  const [collapsed, setCollapsed] = useState(false);
   const [xPos, setXPos] = useState(0);
   const [yPos, setYPos] = useState(0);
 
@@ -110,7 +112,18 @@ export default function App({ Component, pageProps }) {
         ></div>
       </div>
       <div style={{ zoom: zoom, filter: filter }}>
-        <ValueContext.Provider value={{ isShow, setisShow, token, setToken }}>
+        <ValueContext.Provider
+          value={{
+            isShow,
+            setisShow,
+            token,
+            setToken,
+            collapsed,
+            setCollapsed,
+            pin,
+            setPin,
+          }}
+        >
           <Component {...pageProps} />
         </ValueContext.Provider>
       </div>

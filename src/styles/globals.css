@@ -17,9 +17,10 @@
 }
 
 body {
-  min-width: 1800px;
-  min-height: 800px;
+  min-width: 112.5rem;
+  min-height: 50rem;
   user-select: none;
+  font-size: calc(100vw / 100);
 }
 
 ::-webkit-scrollbar {

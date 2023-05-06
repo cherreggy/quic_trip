@@ -56,15 +56,10 @@ export default function PlaneBooker(props) {
     }
   };
 
-  const [Triptype, setTriptype] = useState(1);
+  const [Triptype, setTriptype] = useState("单程");
   const handleTriptype = (e) => {
-    if (e.target.value === 1) {
-      setTriptype("单程");
-    } else if (e.target.value === 2) {
-      setTriptype("往返");
-    } else {
-      setTriptype("多程（含缺口程）");
-    }
+    // console.log(e.target.value);
+    setTriptype(e.target.value);
   };
   const [Zhifei, setZhifei] = useState(false);
   const handleZhifei = (e) => {
@@ -162,9 +157,9 @@ export default function PlaneBooker(props) {
                         defaultValue={1}
                         value={Triptype}
                       >
-                        <Radio value={1}>单程</Radio>
-                        <Radio value={2}>往返</Radio>
-                        <Radio value={3}>多程（含缺口程）</Radio>
+                        <Radio value="单程">单程</Radio>
+                        <Radio value="往返">往返</Radio>
+                        <Radio value="多程（含缺口程）">多程（含缺口程）</Radio>
                       </Radio.Group>
                     </div>
 

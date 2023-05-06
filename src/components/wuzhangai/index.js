@@ -50,7 +50,7 @@ export default function Wuzhangai(props) {
         justifyContent: "space-between",
         color: "white",
         position: "relative",
-        zIndex: "0",
+        zIndex: "999",
       }}
     >
       <Button

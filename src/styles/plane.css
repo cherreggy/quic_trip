@@ -1,6 +1,6 @@
 .plane-wrapper {
   margin: 0 auto;
-  margin-left: 22%;
+  /* margin-left: 22%; */
   width: 60%;
   padding: 1rem 0;
   /* background-color: #fff; */
@@ -185,6 +185,8 @@
 
 .air-people-but {
   width: 14.9rem;
+  height: 50%;
+  margin-top: 3.1%;
   border-radius: 0 0 1rem 1rem;
   border: 1px #eee solid;
   border-top: none;

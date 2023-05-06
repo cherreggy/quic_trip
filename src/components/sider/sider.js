@@ -1,11 +1,12 @@
 import { createFromIconfontCN } from "@ant-design/icons";
 import { Menu } from "antd";
-import { useState, useEffect, use, useRef } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Router from "next/router";
 import { list } from "postcss";
 import { isAssetError } from "next/dist/client/route-loader";
+import { ValueContext } from "@/pages/_app";
 
 const IconFont = createFromIconfontCN({
   // 阿里巴巴矢量图库项目链接
@@ -13,8 +14,6 @@ const IconFont = createFromIconfontCN({
 });
 
 export default function SiderNav({
-  collapsed,
-  setcollapsed,
   defaultOpenKeys,
   defaultSelectedKeys,
   dark,
@@ -100,10 +99,15 @@ export default function SiderNav({
     }
   };
   // 设置折叠值，父组件传入的控制器
-  const handleFold = () => {
-    setcollapsed(!collapsed);
+  // const handleFold = () => {
+  //   setcollapsed(!collapsed);
+  // };
+  // 设置图钉状态，点击图钉可以固定导航栏，默认图钉关闭
+  const { pin, setPin, collapsed, setCollapsed } = useContext(ValueContext);
+  // 点击图钉，改变图钉状态
+  const handlePin = () => {
+    setPin(!pin);
   };
-
   // 菜单项点击函数
   const handleClick = (e) => {
     Router.push(
@@ -126,7 +130,7 @@ export default function SiderNav({
       className={dark ? "dark-sider" : null}
       theme={dark ? "dark" : null}
     >
-      <IconFont type="icon-zhankai" className="folder" onClick={handleFold} />
+      <IconFont type="icon-zhankai" className="folder" onClick={handlePin} />
 
       <Menu
         mode="inline"

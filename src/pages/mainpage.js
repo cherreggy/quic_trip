@@ -3,7 +3,8 @@ const { Header, Footer, Sider, Content } = Layout;
 import SiderNav from "@/components/sider/sider";
 import Toper from "@/components/toper/toper";
 import Info from "@/components/footer/info";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { ValueContext } from "./_app";
 
 // 测试用主页面布局样式
 const headerStyle = {
@@ -34,7 +35,7 @@ const contentStyleDark = {
 const siderStyle = {
   backgroundColor: "#fff",
   boxShadow: "3px 3px 20px 1px rgba(0, 0, 0, 0.1)",
-  zIndex: "1",
+  zIndex: "9999",
 };
 
 const footerStyle = {
@@ -56,8 +57,20 @@ export default function MainPage({
   open,
   setOpen,
 }) {
-  const [collapsed, setCollapsed] = useState(false);
+  // 根组件状态
+  const { collapsed, setCollapsed, pin, setPin } = useContext(ValueContext);
   // console.log(defaultOpenKeys, defaultSelectedKeys);
+
+  // 鼠标经过展开侧边菜单
+  const handleMouseOver = () => {
+    setCollapsed(false);
+  };
+  // 鼠标离开关闭侧边菜单
+  const handleMouseLeave = () => {
+    if (!pin) {
+      setCollapsed(true);
+    }
+  };
 
   return (
     <ConfigProvider
@@ -69,7 +82,12 @@ export default function MainPage({
       }}
     >
       <Layout style={{ minHeight: "100vh" }}>
-        <Sider style={siderStyle} collapsed={collapsed}>
+        <Sider
+          style={siderStyle}
+          collapsed={collapsed}
+          onMouseEnter={handleMouseOver}
+          onMouseLeave={handleMouseLeave}
+        >
           <SiderNav
             setcollapsed={setCollapsed}
             collapsed={collapsed}

@@ -86,10 +86,13 @@ export default function handler(req, res) {
     if (userinfo["boatbook"] === undefined) {
       userinfo["boatbook"] = [];
     }
+
     res.send({
       status: 200,
       data: userinfo,
     });
+
+    res.status(200).json({ message: "success" });
   } else if (op.operate == "bookhotel") {
     var users = fs.readdirSync("./Json");
     users = users.map((item) => item.split(".")[0]);

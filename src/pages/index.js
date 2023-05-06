@@ -1,6 +1,15 @@
+import { ConfigProvider } from "antd";
 import Inn from "./inn";
-import { ConfigProvider, theme } from "antd";
-
+// import { ConfigProvider } from "antd";
+// const viewportUnitsBuggyfill = require("viewport-units-buggyfill");
+// viewportUnitsBuggyfill.init();
+ConfigProvider.config({
+  getPopupContainer: () => document.body,
+});
 export default function Home() {
-  return <Inn></Inn>;
+  return (
+    <ConfigProvider>
+      <Inn></Inn>
+    </ConfigProvider>
+  );
 }
